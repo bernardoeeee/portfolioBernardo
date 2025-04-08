@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/rocket.png">
+    <title>Portfólio</title>
+</head>
+
+<body>
+
+    <header>
+        <div id="start" class="nav-links">
+            <h1></h1>
+            <a href="#inicio"></a>
+            <a href="#aboutMe"></a>
+            <a href="#projects"></a>
+            <a href="#contatos"></a>
+        </div>
+
+    </header>
+
+    <div class="lang">
+        <!-- <span class="blur"></span> -->
+        <button onclick="langUSA(event)" id="USA"><img src="assets/USA.png" draggable="false"></button>
+        <button onclick="langPTbr(event)" id="PTbr"><img src="assets/Brasil.png" draggable="false"></button>
+    </div>
+
+    <!-- <a href="https://github.com/bernardoeeee?tab=repositories"></a> -->
+
+    <div id="inicio" class="container">
+        <div class="introduction">
+            <span class="blur"></span>
+            <span class="blur"></span>
+            <h1></h1>
+            <p></p>
+        </div>
+        <video autoplay loop muted class="img-introduction">
+            <source src="./assets/video4.mp4" type="video/mp4">
+        </video>
+    </div>
+
+
+    <h2 id="aboutMe"></h2>
+
+
+    <container class="container">
+        <div class="aboutMe">
+            <span class="blur"></span>
+            <span class="blur"></span>
+            <h1></h1>
+            <p></p>
+        </div>
+        <img src="./assets/eu.jpg" class="img-aboutMe" draggable="false">
+    </container>
+
+
+    <h2 id="projects"></h2>
+
+
+    <section class="PrimeiraFileira">
+
+        <div class="card">
+            <span class="blur"></span>
+            <img src="./assets/RastriMed.jpg" draggable="false">
+            <div class="card-body">
+                <h2 class="card-title"></h2>
+                <h4 class="card-text"></h4>
+                <a href="https://github.com/bernardoeeee/hackathon2024"><i class="fa-brands fa-github fa-2xl"
+                        style="color: #fff;"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="blur"></span>
+            <img src="./assets/estacionei.jpg" draggable="false" />
+            <div class="card-body">
+                <h2 class="card-title"></h2>
+                <h4 class="card-text"></h4>
+                <a href="https://github.com/bernardoeeee/CadastroCarros"><i class="fa-brands fa-github fa-2xl"
+                        style="color: #fff;"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="blur"></span>
+            <img src="./assets/zap.jpg" draggable="false" />
+            <div class="card-body">
+                <h2 class="card-title"></h2>
+                <h4 class="card-text"></h4>
+                <a href="https://github.com/bernardoeeee/WhatsApp2"><i class="fa-brands fa-github fa-2xl"
+                        style="color: #fff;"></i></a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="blur"></span>
+            <img src="./assets/JogoDaAdivinhacao.jpg" draggable="false" />
+            <div class="card-body">
+                <h2 class="card-title"></h2>
+                <h4 class="card-text"></h4>
+                <a href="https://github.com/bernardoeeee/SorteadorALURA"><i class="fa-brands fa-github fa-2xl"
+                        style="color: #fff;"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contatos" class="contatos">
+        <h2 class="contatos-titulo"></h2>
+        <form class="formulario-contato" id="formulario" onsubmit="enviarWhats(event)">
+            <div class="grupo-form">
+                <input id="nome" type="text" placeholder="Nome / Name" class="campo-form">
+            </div>
+            <div class="grupo-form">
+                <textarea id="mensagem" rows="6" placeholder="Digite sua mensagem / Write your message"
+                    class="campo-form"></textarea>
+            </div>
+            <button type="submit" class="botao-form">Enviar WhatsApp / Send Whatsapp</button>
+        </form>
+    </section>
+    <!-- <div class="start">
+        <a href="#start"><i class="fa-solid fa-arrow-up" style="color: #fff;"></i></a>
+    </div> -->
+
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/8a3618c51f.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
