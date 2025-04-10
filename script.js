@@ -81,7 +81,7 @@ function exibirMensagemInicioPUSA() {
 
 
 function exibirMensagemInicioH2USA() {
-    const texto = ["About Me", "Projects", "Hackathon + Health", "Car parking", "Sincere exchange", "Guessing game", "get in touch"]
+    const texto = ["About Me", "Projects", "Hackathon + Health", "Car parking", "Sincere exchange", "Guessing game", "Get in touch"]
     exibirTextoNaTela("h2", texto)
 }
 
