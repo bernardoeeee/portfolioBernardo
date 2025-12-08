@@ -23,7 +23,6 @@ html {
 }
 
 body {
-    /* background-color: #000c66; */
     background-color: var(--cor-principal);
     font-family: "Geist Mono", serif;
     font-optical-sizing: auto;
@@ -35,13 +34,20 @@ body {
 
 /* INICIO DO HEADER */
 header {
-    background-color: var(--cor-principal);
-    /* background-color: #050a30; */
+    background: linear-gradient(180deg, rgba(31, 53, 65, 0.95) 0%, rgba(31, 53, 65, 0.85) 100%);
     height: 3em;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 
 .nav-links {
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
 }
@@ -81,10 +87,14 @@ a {
 
 .lang {
     display: flex;
-    position: relative;
     flex-direction: row-reverse;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 55px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 .lang button {
@@ -139,9 +149,104 @@ a {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(82, 137, 181, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(82, 137, 181, 0.6);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
     }
 }
 
@@ -180,10 +285,10 @@ a {
 .introduction p {
     width: 25vw;
     margin-bottom: 1rem;
-    text-align: justify;
+    /* text-align: start; */
     font-weight: 400;
     font-size: 1.1rem;
-    backdrop-filter: blur(100px);
+    /* backdrop-filter: blur(100px); */
     color: var(--cor-texto);
 }
 
@@ -270,26 +375,6 @@ a {
 .card:hover {
     box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
     transform: translateY(-5px) scale(1.03);
-}
-
-.card {
-    animation: fadeInScale 0.6s ease-out backwards;
-}
-
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
 }
 
 .card {
@@ -453,4 +538,310 @@ a {
 .modal-content ul {
     list-style: circle inside;
     padding: 0;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: var(--cor-principal);
+    height: 3em;
+    margin-top: 18vh;
+}
+
+.content-footer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.content-footer h1 {
+    margin-right: 20em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.content-footer a {
+    margin-right: 3vw;
+    position: relative;
+    padding-bottom: 0.75rem;
+    color: var(--cor-texto);
+    transition: all 0.4s ease;
+}
+
+.content-footer a:hover {
+    transform: translateY(-5px) scale(1.03);
+}
+
+/* IPHONE 12 PRO RESPONSIVENESS (390px - 844px) */
+@media screen and (max-width: 768px) {
+
+    /* HEADER MOBILE */
+    header {
+        height: 2.5em;
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0.25rem;
+    }
+
+    .nav-links h1 {
+        margin-left: 0.5em;
+        font-size: 1rem;
+    }
+
+    .nav-links a {
+        margin-right: 1vw;
+        font-size: 0.8rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .lang {
+        margin-right: 5px;
+        margin-top: 50px;
+    }
+
+    .lang img {
+        width: 3vw;
+        height: 3vh;
+    }
+
+    /* INTRO SECTION */
+    #inicio {
+        flex-direction: column;
+        margin-top: 8vh;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .introduction h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .introduction p {
+        width: 100%;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .img-introduction {
+        height: 30vh;
+        width: 100%;
+        border-radius: 1.5rem;
+        animation: slideInUp 0.6s ease-out;
+    }
+
+    /* ABOUT ME SECTION */
+    #aboutMe {
+        flex-direction: column;
+        margin-top: 15vh;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 2rem 1rem;
+        gap: 2rem;
+        flex-direction: column;
+    }
+
+    .aboutMe h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .aboutMe p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .img-aboutMe {
+        width: 100%;
+        height: auto;
+        border-radius: 1.5rem;
+        animation: slideInUp 0.8s ease-out;
+    }
+
+    /* PROJECTS SECTION */
+    #projects {
+        margin-top: 15vh;
+    }
+
+    .PrimeiraFileira {
+        flex-direction: column;
+        margin-top: 5vh;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .card {
+        width: 100%;
+        animation: fadeInScale 0.6s ease-out backwards;
+    }
+
+    .card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .card:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .card img {
+        height: 12rem;
+    }
+
+    .card-body {
+        padding: 12px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.85rem;
+    }
+
+    /* CONTACT SECTION */
+    .contatos {
+        padding: 2rem 1rem;
+        margin-top: 10vh;
+    }
+
+    .contatos-titulo {
+        margin-top: 0;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .formulario-contato {
+        max-width: 100%;
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .campo-form {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .grupo-form {
+        margin-bottom: 1.5rem;
+    }
+
+    .botao-form {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 8px;
+    }
+
+    /* MODAL MOBILE */
+    .modal-content {
+        width: 90%;
+        margin: 30% auto;
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .modal-content h4 {
+        font-size: 0.9rem;
+    }
+
+    .close {
+        font-size: 24px;
+    }
+
+    /* FOOTER MOBILE */
+    footer {
+        height: 3em;
+        margin-top: 10vh;
+    }
+
+    .content-footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+
+    .content-footer h1 {
+        margin-right: 0;
+        font-size: 1rem;
+    }
+
+    .content-footer a {
+        margin-right: 1rem;
+        font-size: 1.2rem;
+    }
+
+    /* ANIMATION ADJUSTMENTS FOR MOBILE */
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes flutuar {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(10px);
+        }
+    }
+
+    .img-aboutMe {
+        animation: flutuar 6s ease-in-out infinite;
+    }
+}
+
+/* EXTRA SMALL DEVICES (< 375px) */
+@media screen and (max-width: 375px) {
+
+    .introduction h1 {
+        font-size: 1.5rem;
+    }
+
+    .aboutMe h1 {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .card-text {
+        font-size: 0.75rem;
+    }
+
+    .contatos-titulo {
+        font-size: 1.5rem;
+    }
 }
