@@ -30,16 +30,7 @@ body {
     font-weight: 400;
     font-style: normal;
     color: #fff;
-    padding-top: 3em;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
 
-body.light-mode {
-    --cor-principal: #F5F5F5;
-    --cor-prin: #FFFFFF;
-    --cor-sec: #5289B5;
-    --cor-terc: #AFD8F2;
-    --cor-texto: #1F3541;
 }
 
 /* INICIO DO HEADER */
@@ -47,12 +38,6 @@ header {
     background-color: var(--cor-principal);
     /* background-color: #050a30; */
     height: 3em;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
 }
 
 
@@ -147,7 +132,6 @@ a {
     flex-direction: row;
     font-weight: 800;
     margin-top: 12vh;
-    animation: slideInUp 0.8s ease-out;
 }
 
 @keyframes slideInUp {
@@ -281,8 +265,11 @@ a {
     justify-content: space-around;
     margin-top: 10vh;
     gap: 20px;
-    flex-wrap: wrap;
-    padding: 0 2rem;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+    transform: translateY(-5px) scale(1.03);
 }
 
 .card {
@@ -305,11 +292,6 @@ a {
     }
 }
 
-.card:hover {
-    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
-    transform: translateY(-5px) scale(1.03);
-}
-
 .card {
     display: flex;
     flex-direction: column;
@@ -319,7 +301,6 @@ a {
     background-color: var(--cor-prin);
     cursor: pointer;
     width: 18vw;
-    min-width: 250px;
     transition: all 0.5s ease;
     box-shadow: 23px 23px 10px -5px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
@@ -472,285 +453,4 @@ a {
 .modal-content ul {
     list-style: circle inside;
     padding: 0;
-}
-
-/* FOOTER */
-footer {
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 3rem 2rem;
-    text-align: center;
-    margin-top: 5rem;
-    border-top: 1px solid var(--cor-sec);
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.social-links a {
-    color: var(--cor-sec);
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.social-links a:hover {
-    color: var(--cor-terc);
-    transform: translateY(-5px);
-}
-
-.footer-text {
-    font-size: 0.9rem;
-    color: var(--cor-texto);
-    opacity: 0.8;
-}
-
-/* SKILLS SECTION */
-#skills {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-direction: row;
-    font-weight: 800;
-    margin-top: 30vh;
-}
-
-.skills-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 4vw 2vh;
-    width: 100%;
-}
-
-.skills-container h2 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.skill-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--cor-sec);
-    animation: slideInUp 0.6s ease-out;
-}
-
-.skill-item h3 {
-    margin-bottom: 1rem;
-    color: var(--cor-sec);
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--cor-sec), var(--cor-terc));
-    border-radius: 4px;
-    transition: width 1s ease-out;
-    width: 0;
-}
-
-.progress-fill.animate {
-    width: 100%;
-}
-
-.skill-percentage {
-    font-size: 0.9rem;
-    color: var(--cor-terc);
-}
-
-/* TEMA E NAVEGAÇÃO */
-.nav-indicators {
-    position: fixed;
-    right: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    z-index: 50;
-}
-
-.nav-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: var(--cor-sec);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    opacity: 0.5;
-    border: 2px solid var(--cor-terc);
-}
-
-.nav-dot.active {
-    opacity: 1;
-    transform: scale(1.3);
-    background-color: var(--cor-terc);
-}
-
-.theme-toggle {
-    position: fixed;
-    top: 4.5rem;
-    right: 2rem;
-    background-color: var(--cor-sec);
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    z-index: 99;
-    transition: all 0.3s ease;
-    color: white;
-}
-
-.theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(82, 137, 181, 0.3);
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 1200px) {
-    .container {
-        flex-direction: column;
-        gap: 5vw;
-    }
-    
-    .introduction p {
-        width: 100%;
-    }
-    
-    .card {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .img-aboutMe {
-        width: 100%;
-        max-width: 400px;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-    }
-    
-    .nav-links a {
-        margin-right: 1rem;
-        padding-bottom: 0.5rem;
-    }
-    
-    .introduction h1 {
-        font-size: 1.8rem;
-    }
-    
-    .aboutMe h1 {
-        font-size: 2rem;
-    }
-    
-    .aboutMe p {
-        font-size: 0.95rem;
-    }
-    
-    .card {
-        width: 100%;
-        max-width: 280px;
-    }
-    
-    .card img {
-        height: 200px;
-    }
-    
-    .PrimeiraFileira {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .lang {
-        margin-right: 2rem;
-        margin-top: 0.5rem;
-    }
-    
-    .lang img {
-        width: 4vw;
-        height: 6vh;
-    }
-    
-    .nav-indicators {
-        display: none;
-    }
-    
-    .theme-toggle {
-        right: 1rem;
-        top: 3.5rem;
-    }
-    
-    .formulario-contato {
-        padding: 1.5rem;
-    }
-    
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .introduction h1 {
-        font-size: 1.5rem;
-    }
-    
-    .introduction p {
-        font-size: 0.9rem;
-    }
-    
-    .aboutMe h1 {
-        font-size: 1.5rem;
-    }
-    
-    .aboutMe p {
-        font-size: 0.85rem;
-    }
-    
-    #projects {
-        margin-top: 15vh;
-    }
-    
-    #skills {
-        margin-top: 15vh;
-    }
-    
-    header {
-        height: 2.5em;
-    }
-    
-    body {
-        padding-top: 2.5em;
-    }
 }

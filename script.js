@@ -1,6 +1,5 @@
 // Idioma atual
 let idiomaAtual = 'pt-br';
-let temaClaro = false;
 
 function exibirTextoNaTela(tag, texto) {
     let campo = document.querySelectorAll(tag);
@@ -28,7 +27,7 @@ function exibirMensagemInicioPPT() {
 }
 
 function exibirMensagemInicioH2PT() {
-    const texto = ["Sobre mim", "Projetos", "Hackaton + Saúde", "SmartFlow", "FoodMind", "DevFeira", "Habilidades", "Entre em contato"]
+    const texto = ["Sobre mim", "Projetos", "Hackaton + Saúde", "SmartFlow", "FoodMind", "DevFeira", "Entre em contato"]
     exibirTextoNaTela("h2", texto)
 }
 
@@ -54,7 +53,7 @@ function exibirMensagemInicioPUSA() {
 }
 
 function exibirMensagemInicioH2USA() {
-    const texto = ["About Me", "Projects", "Hackathon + Health", "SmartFlow", "FoodMind", "DevFeira", "Skills", "Get in touch"]
+    const texto = ["About Me", "Projects", "Hackathon + Health", "SmartFlow", "FoodMind", "DevFeira", "Get in touch"]
     exibirTextoNaTela("h2", texto)
 }
 
@@ -157,8 +156,6 @@ function langPTbr(event) {
     exibirMensagemInicioPPT();
     exibirMensagemInicioH2PT();
     exibirMensagemInicioH4PT();
-    atualizarSkillsTitle();
-    atualizarFooter();
 }
 
 
@@ -172,8 +169,6 @@ function langUSA(event) {
     exibirMensagemInicioPUSA();
     exibirMensagemInicioH2USA();
     exibirMensagemInicioH4USA();
-    atualizarSkillsTitle();
-    atualizarFooter();
 }
 
 
@@ -183,134 +178,11 @@ exibirMensagemInicioPPT();
 exibirMensagemInicioH2PT();
 exibirMensagemInicioH4PT();
 
-// SKILLS SECTION
-const skillsPT = [
-    { nome: "HTML", porcentagem: 95 },
-    { nome: "CSS", porcentagem: 90 },
-    { nome: "JavaScript", porcentagem: 85 },
-    { nome: "MySQL", porcentagem: 80 },
-    { nome: "React", porcentagem: 70 },
-    { nome: "Node.js", porcentagem: 65 }
-];
-
-const skillsUSA = [
-    { nome: "HTML", porcentagem: 95 },
-    { nome: "CSS", porcentagem: 90 },
-    { nome: "JavaScript", porcentagem: 85 },
-    { nome: "MySQL", porcentagem: 80 },
-    { nome: "React", porcentagem: 70 },
-    { nome: "Node.js", porcentagem: 65 }
-];
-
-function renderizarSkills(skills) {
-    const skillsGrid = document.getElementById('skillsGrid');
-    skillsGrid.innerHTML = skills.map(skill => `
-        <div class="skill-item">
-            <h3>${skill.nome}</h3>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 0%"></div>
-            </div>
-            <div class="skill-percentage">${skill.porcentagem}%</div>
-        </div>
-    `).join('');
-    
-    // Animar progress bars
-    setTimeout(() => {
-        document.querySelectorAll('.progress-fill').forEach((fill, index) => {
-            fill.classList.add('animate');
-            fill.style.width = `${skills[index].porcentagem}%`;
-        });
-    }, 100);
-}
-
-// THEME TOGGLE
-function toggleTheme(event) {
-    event.preventDefault();
-    temaClaro = !temaClaro;
-    document.body.classList.toggle('light-mode');
-    const btn = document.getElementById('themeToggle');
-    btn.textContent = temaClaro ? '☀️' : '🌙';
-    localStorage.setItem('tema', temaClaro);
-}
-
-// Load saved theme
-if (localStorage.getItem('tema') === 'true') {
-    temaClaro = true;
-    document.body.classList.add('light-mode');
-    document.getElementById('themeToggle').textContent = '☀️';
-}
-
-// SCROLL INDICATORS
-const sections = ['inicio', 'aboutMe', 'projects', 'contatos'];
-
-function criarNavIndicators() {
-    const navIndicators = document.getElementById('navIndicators');
-    sections.forEach(section => {
-        const dot = document.createElement('div');
-        dot.className = 'nav-dot';
-        dot.onclick = () => document.getElementById(section).scrollIntoView({ behavior: 'smooth' });
-        navIndicators.appendChild(dot);
-    });
-}
-
-function updateNavIndicators() {
-    const dots = document.querySelectorAll('.nav-dot');
-    let currentSection = 0;
-    
-    sections.forEach((section, index) => {
-        const element = document.getElementById(section);
-        const rect = element.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2) {
-            currentSection = index;
-        }
-    });
-    
-    dots.forEach((dot, index) => {
-        dot.classList.remove('active');
-        if (index === currentSection) {
-            dot.classList.add('active');
-        }
-    });
-}
-
-criarNavIndicators();
-window.addEventListener('scroll', updateNavIndicators);
-
-// FOOTER TEXT
-function atualizarFooter() {
-    const footerText = document.getElementById('footerText');
-    const ano = new Date().getFullYear();
-    if (idiomaAtual === 'pt-br') {
-        footerText.textContent = `© ${ano} Bernardo Varisco Fleck. Todos os direitos reservados.`;
-    } else {
-        footerText.textContent = `© ${ano} Bernardo Varisco Fleck. All rights reserved.`;
-    }
-}
-
-// SKILLS TITLE
-function atualizarSkillsTitle() {
-    const skillsTitle = document.getElementById('skillsTitle');
-    if (idiomaAtual === 'pt-br') {
-        skillsTitle.textContent = 'Minhas Habilidades';
-        renderizarSkills(skillsPT);
-    } else {
-        skillsTitle.textContent = 'My Skills';
-        renderizarSkills(skillsUSA);
-    }
-}
-
-atualizarSkillsTitle();
-atualizarFooter();
+function enviarWhats(event) {
     event.preventDefault();
 
-    const nome = document.getElementById('nome').value.trim();
-    const mensagem = document.getElementById('mensagem').value.trim();
-    
-    if (!nome || !mensagem) {
-        alert(idiomaAtual === 'pt-br' ? 'Por favor, preencha todos os campos!' : 'Please fill in all fields!');
-        return;
-    }
-    
+    const nome = document.getElementById('nome').value;
+    const mensagem = document.getElementById('mensagem').value;
     const telefone = '5551997076102';
 
     const textos = `Ola!! Me chamo ${nome}, ${mensagem}`;
@@ -318,3 +190,4 @@ atualizarFooter();
     const url = `https://wa.me/${telefone}?text=${msgFormatada}`;
 
     window.open(url, '_blank');
+}
