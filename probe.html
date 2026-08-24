@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernardo Varisco Fleck — Levantamento</title>
+    <meta name="description"
+        content="Levantamento dos trabalhos de Bernardo Varisco Fleck: quatro sistemas construídos, repositórios públicos, técnico em programação no Senac RS.">
+    <meta property="og:title" content="Bernardo Varisco Fleck — Levantamento" />
+    <meta property="og:description" content="Quatro sistemas construídos. Repositórios públicos. Folha SO-22, Portão / RS." />
+    <meta property="og:image" content="https://bernardoeeee.github.io/portfolioBernardo/assets/RastriMed.jpg" />
+    <meta property="og:url" content="https://bernardoeeee.github.io/portfolioBernardo/" />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#43284D">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Archivo:wght@400;500;600&family=Spectral:ital,wght@1,300;1,400&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/rocket.png">
+</head>
+
+<body>
+    <!--
+    THESIS: A survey sheet, not a portfolio. This page refuses the dark card-grid
+      portfolio with a neon accent and a "hi, I'm ___" hero; the terrain and the
+      four surveyed sites are the argument.
+    OWN-WORLD: A geological survey sheet of Rio Grande do Sul. Cool sheet white
+      #E7E9E2 under saturated lithology fields (basalt violet #43284D, sandstone
+      ochre #C87B26, campo green #2F5E48, bistre #6E4526, hydrography #14607C).
+      Hairline black neatlines, hatching and stipple, zero soft shadows or
+      gradients. Archivo Narrow letterspaced caps for sheet lettering, Spectral
+      italic for feature names, no monospace anywhere.
+    STORY: An 18-year-old already ships working database systems. The visitor
+      reads four surveyed sites with public repositories, then transmits a
+      message or follows a link.
+    FIRST VIEWPORT: Full-bleed plotted contour terrain. Sheet collar across the
+      top with grid readout and edition toggle. Sheet title block at left,
+      condensed caps at display scale over an italic pitch line. Four numbered
+      spot heights sit on the terrain as the primary action; scale bar and
+      credentials along the bottom margin.
+    FORM: Topographic survey of Rio Grande do Sul, candidate 6 of the ordered
+      grounded list, seed key 18abb911. Raised by MASS (cloud quarry), HAIRLINE
+      CHROME (one-bit desktop), FOCUS DISCLOSURE (streaming wall), ONE UNBROKEN
+      LINE (drum machine step row), SURFACE-WIDE STATE (chromatophore skin).
+    FINISH: unreviewed and undocumented is unfinished; this build ends with the
+      finish review, the verdict, DESIGN.md, and every shipping raster carrying
+      its provenance.
+    -->
+
+    <a class="skip" href="#sitios" data-i18n="skip">Ir para os sítios levantados</a>
+
+    <div class="collar" role="banner">
+        <div class="collar__sheet">
+            <span class="collar__label" data-i18n="collarSheet">Folha</span>
+            <span class="collar__value">SO-22 · PORTÃO · RS</span>
+        </div>
+        <div class="collar__grid" aria-live="polite">
+            <span class="collar__label" data-i18n="collarGrid">Referência</span>
+            <span class="collar__value" id="gridRef">22J 481 6702</span>
+        </div>
+        <div class="collar__edition">
+            <span class="collar__label" data-i18n="collarEdition">Edição</span>
+            <div class="edition" role="group" aria-label="Idioma / Language">
+                <button type="button" class="edition__btn" data-lang="pt" aria-pressed="true">PT-BR</button>
+                <button type="button" class="edition__btn" data-lang="en" aria-pressed="false">EN</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- ============ SHEET FACE ============ -->
+        <section class="sheet" id="inicio" aria-labelledby="sheetTitle">
+            <canvas class="sheet__relief" id="relief" aria-hidden="true"></canvas>
+            <svg class="sheet__contours" id="contours" aria-hidden="true" preserveAspectRatio="none"></svg>
+            <div class="sheet__vignette" aria-hidden="true"></div>
+
+            <div class="sheet__block">
+                <p class="overline" data-i18n="sheetOverline">Levantamento de trabalho · 2024 — 2026</p>
+                <h1 id="sheetTitle">Bernardo<br>Varisco<br>Fleck</h1>
+                <p class="lede" data-i18n="sheetLede">Tenho 18 anos e quatro sistemas construídos, de código aberto.
+                    Isto é o levantamento deles.</p>
+                <div class="sheet__actions">
+                    <a class="btn btn--solid" href="#sitios" data-i18n="sheetCta">Ver os quatro sítios</a>
+                    <a class="btn" href="#contato" data-i18n="sheetCta2">Falar comigo</a>
+                </div>
+            </div>
+
+            <ul class="spots" id="spots" aria-label="Sítios levantados">
+                <li class="spot" style="--x:70%; --y:24%"><a href="#sitio-1"><span class="spot__mark"
+                            aria-hidden="true"></span><span class="spot__n">01</span><span
+                            class="spot__name">Hackaton + Saúde</span><span class="spot__h">▲ 412</span></a></li>
+                <li class="spot" style="--x:87%; --y:45%"><a href="#sitio-2"><span class="spot__mark"
+                            aria-hidden="true"></span><span class="spot__n">02</span><span
+                            class="spot__name">SmartFlow</span><span class="spot__h">▲ 386</span></a></li>
+                <li class="spot" style="--x:64%; --y:64%"><a href="#sitio-3"><span class="spot__mark"
+                            aria-hidden="true"></span><span class="spot__n">03</span><span
+                            class="spot__name">FoodMind</span><span class="spot__h">▲ 297</span></a></li>
+                <li class="spot" style="--x:83%; --y:81%"><a href="#sitio-4"><span class="spot__mark"
+                            aria-hidden="true"></span><span class="spot__n">04</span><span
+                            class="spot__name">DevFeira</span><span class="spot__h">▲ 240</span></a></li>
+            </ul>
+
+            <div class="sheet__margin">
+                <div class="scalebar" aria-hidden="true">
+                    <div class="scalebar__bar"><i></i><i></i><i></i><i></i></div>
+                    <div class="scalebar__ticks"><span>0</span><span>1</span><span>2</span><span>3</span><span>4 km</span>
+                    </div>
+                </div>
+                <p class="credentials"><span data-i18n="credA">Técnico em Programação · Senac RS</span><span
+                        class="sep" aria-hidden="true">·</span><span data-i18n="credB">Estagiário · BEG Support</span><span
+                        class="sep" aria-hidden="true">·</span><span data-i18n="credC">Portão, Rio Grande do Sul</span></p>
+            </div>
+        </section>
+
+        <!-- ============ PROFILE SECTION ============ -->
+        <section class="perfil" id="perfil" aria-labelledby="perfilTitle">
+            <div class="band__head">
+                <p class="tag" data-i18n="perfilTag">Perfil transversal</p>
+                <h2 id="perfilTitle" data-i18n="perfilTitle">O terreno</h2>
+            </div>
+            <div class="perfil__grid">
+                <figure class="plate plate--portrait">
+                    <img src="assets/eu.jpg" alt="Bernardo Varisco Fleck, retrato" loading="lazy" decoding="async">
+                    <figcaption><span class="plate__n">Est. 1</span><span data-i18n="portraitCap">Levantador · Portão,
+                            RS</span></figcaption>
+                </figure>
+                <div class="perfil__notes">
+                    <div class="section">
+                        <svg class="profileline" viewBox="0 0 600 88" aria-hidden="true"
+                            preserveAspectRatio="none">
+                            <path id="profileFill" d="" />
+                            <path id="profilePath" d="" />
+                        </svg>
+                        <p class="section__caption"><span data-i18n="sectionA">Corte A — A'</span><span
+                                data-i18n="sectionB">Exageração vertical 4×</span></p>
+                    </div>
+                    <p class="notes" data-i18n="perfilP1">Meu nome é Bernardo Varisco Fleck, tenho 18 anos e sou
+                        natural do Rio Grande do Sul. Resido em Portão e curso Técnico em Programação no Senac RS.
+                        Paralelamente, aprimoro meus conhecimentos com cursos da Alura e da Udemy, ampliando minha base
+                        técnica e prática.</p>
+                    <p class="notes" data-i18n="perfilP2">Atualmente faço estágio na BEG Support, o que tem
+                        contribuído de forma significativa para meu desenvolvimento profissional e pessoal, com
+                        vivência real na área de tecnologia. Estou sempre em busca de novos aprendizados e desafios:
+                        meu objetivo é construir uma carreira sólida e consistente na programação.</p>
+                    <dl class="record">
+                        <div>
+                            <dt data-i18n="recA">Formação</dt>
+                            <dd>Senac RS</dd>
+                        </div>
+                        <div>
+                            <dt data-i18n="recB">Estágio</dt>
+                            <dd>BEG Support</dd>
+                        </div>
+                        <div>
+                            <dt data-i18n="recC">Sistemas construídos</dt>
+                            <dd>4</dd>
+                        </div>
+                        <div>
+                            <dt data-i18n="recD">Repositórios</dt>
+                            <dd data-i18n="recDv">Públicos</dd>
+                        </div>
+                    </dl>
+                    <ul class="legend legend--wide" aria-label="Stack">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>MySQL</li>
+                        <li>Socket.io</li>
+                        <li>Git</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ SITES ============ -->
+        <div class="sitios__title" id="sitios">
+            <p class="tag" data-i18n="sitiosTag">Quatro sítios levantados</p>
+            <h2 data-i18n="sitiosTitle">Os sistemas</h2>
+        </div>
+
+        <div class="sites">
+            <div class="traverse" id="traverse" aria-hidden="true">
+                <span class="traverse__line"></span>
+                <span class="traverse__mark" id="traverseMark"></span>
+            </div>
+
+            <section class="site site--basalt" id="sitio-1" aria-labelledby="s1">
+                <div class="site__inner">
+                    <div class="site__meta">
+                        <span class="site__n">01</span>
+                        <span class="site__ref">22J 481 6702 · ▲ 412</span>
+                    </div>
+                    <div class="site__body">
+                        <h3 id="s1" data-i18n="s1Title">Hackaton + Saúde</h3>
+                        <p class="site__line" data-i18n="s1Line">Rastreio de instrumentos cirúrgicos perdidos entre a
+                            cirurgia e a esterilização.</p>
+                        <p class="notes" data-i18n="s1Body">Aplicação com funcionalidade CRUD voltada a auxiliar
+                            hospitais na localização de ferramentas utilizadas em cirurgias e processos de limpeza. A
+                            plataforma permite registro, busca, atualização e remoção de instrumentos, oferecendo mais
+                            controle e segurança durante os procedimentos médicos.</p>
+                        <ul class="legend" aria-label="Stack">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>MySQL</li>
+                        </ul>
+                        <a class="btn btn--solid" href="https://github.com/bernardoeeee/hackathon2024" target="_blank"
+                            rel="noopener"><span data-i18n="repo">Repositório</span> <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="site__aside">
+                        <figure class="plate plate--mark">
+                            <img src="assets/RastriMed.jpg" loading="lazy" decoding="async"
+                                alt="Marca do sistema Hackaton + Saúde">
+                            <figcaption><span class="plate__n">Est. 2</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                        </figure>
+                        <svg class="sitevig" data-vig="2" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true"></svg>
+                    </div>
+                </div>
+            </section>
+
+            <section class="site site--campo" id="sitio-2" aria-labelledby="s2">
+                <div class="site__inner">
+                    <div class="site__meta">
+                        <span class="site__n">02</span>
+                        <span class="site__ref">22J 486 6698 · ▲ 386</span>
+                    </div>
+                    <div class="site__body">
+                        <h3 id="s2" data-i18n="s2Title">SmartFlow</h3>
+                        <p class="site__line" data-i18n="s2Line">Uma escola inteira — professores, alunos, presença e
+                            desempenho — em um só sistema.</p>
+                        <p class="notes" data-i18n="s2Body">Plataforma desenvolvida para otimizar a administração de
+                            turmas no ambiente escolar, integrando em um único sistema os módulos de gestão de
+                            professores, alunos, registros de presença e desempenho acadêmico. Cada usuário possui
+                            acesso segmentado e seguro, visualizando apenas os dados e funcionalidades compatíveis com
+                            seu perfil e nível de permissão dentro da plataforma.</p>
+                        <ul class="legend" aria-label="Stack">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>MySQL</li>
+                        </ul>
+                        <a class="btn btn--solid" href="https://github.com/bernardoeeee/SmartFlow" target="_blank"
+                            rel="noopener"><span data-i18n="repo">Repositório</span> <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="site__aside">
+                        <figure class="plate plate--mark">
+                            <img src="assets/SmartFlow.jpg" loading="lazy" decoding="async"
+                                alt="Marca do sistema SmartFlow">
+                            <figcaption><span class="plate__n">Est. 3</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                        </figure>
+                        <svg class="sitevig" data-vig="3" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true"></svg>
+                    </div>
+                </div>
+            </section>
+
+            <section class="site site--bistre" id="sitio-3" aria-labelledby="s3">
+                <div class="site__inner">
+                    <div class="site__meta">
+                        <span class="site__n">03</span>
+                        <span class="site__ref">22J 479 6691 · ▲ 297</span>
+                    </div>
+                    <div class="site__body">
+                        <h3 id="s3" data-i18n="s3Title">FoodMind</h3>
+                        <p class="site__line" data-i18n="s3Line">Acompanhamento nutricional com servidor próprio e
+                            comunicação em tempo real.</p>
+                        <p class="notes" data-i18n="s3Body">Aplicação web desenvolvida em JavaScript com arquitetura
+                            cliente-servidor, voltada ao acompanhamento nutricional, controle de hábitos alimentares e
+                            gestão de lembretes e eventos pessoais, além de integrar funcionalidades de comunicação e
+                            personalização de perfil.</p>
+                        <ul class="legend" aria-label="Stack">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>MySQL</li>
+                            <li>Socket.io</li>
+                        </ul>
+                        <a class="btn btn--solid" href="https://github.com/bernardoeeee/FoodMind" target="_blank"
+                            rel="noopener"><span data-i18n="repo">Repositório</span> <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="site__aside">
+                        <figure class="plate plate--mark">
+                            <img src="assets/FoodMind.jpg" loading="lazy" decoding="async"
+                                alt="Marca do sistema FoodMind">
+                            <figcaption><span class="plate__n">Est. 4</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                        </figure>
+                        <svg class="sitevig" data-vig="4" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true"></svg>
+                    </div>
+                </div>
+            </section>
+
+            <section class="site site--hydro" id="sitio-4" aria-labelledby="s4">
+                <div class="site__inner">
+                    <div class="site__meta">
+                        <span class="site__n">04</span>
+                        <span class="site__ref">22J 484 6685 · ▲ 240</span>
+                    </div>
+                    <div class="site__body">
+                        <h3 id="s4" data-i18n="s4Title">DevFeira</h3>
+                        <p class="site__line" data-i18n="s4Line">Uma feira de troca: quem pede e quem oferece ajuda em
+                            programação, design e projetos.</p>
+                        <p class="notes" data-i18n="s4Body">O projeto consistiu na criação de uma plataforma onde os
+                            usuários podem oferecer e pedir ajuda sobre programação, design e projetos. Desenvolvemos
+                            uma página inicial, páginas de cadastro e login e três áreas específicas: desenvolvedores,
+                            designers e projetos. Nelas, os usuários podem postar dúvidas ou dicas acompanhadas de
+                            imagens.</p>
+                        <ul class="legend" aria-label="Stack">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>MySQL</li>
+                        </ul>
+                        <a class="btn btn--solid"
+                            href="https://github.com/bernardoeeee/Hackathon-3B-FeiraTrocaDigital" target="_blank"
+                            rel="noopener"><span data-i18n="repo">Repositório</span> <span
+                                aria-hidden="true">↗</span></a>
+                    </div>
+                    <div class="site__aside">
+                        <figure class="plate plate--mark">
+                            <img src="assets/DevFeira.jpg" loading="lazy" decoding="async"
+                                alt="Marca do sistema DevFeira">
+                            <figcaption><span class="plate__n">Est. 5</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                        </figure>
+                        <svg class="sitevig" data-vig="5" viewBox="0 0 300 190" preserveAspectRatio="none" aria-hidden="true"></svg>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============ CONTACT ============ -->
+        <section class="contato" id="contato" aria-labelledby="contatoTitle">
+            <div class="contato__inner">
+                <div class="contato__head">
+                    <p class="tag" data-i18n="contatoTag">Boletim de campo</p>
+                    <h2 id="contatoTitle" data-i18n="contatoTitle">Transmitir uma mensagem</h2>
+                    <p class="lede lede--sm" data-i18n="contatoLede">Escreva abaixo. A mensagem abre já pronta no meu
+                        WhatsApp, sem passar por servidor nenhum.</p>
+                    <dl class="station">
+                        <div>
+                            <dt data-i18n="stA">WhatsApp</dt>
+                            <dd><a href="https://wa.me/5551997076102" target="_blank"
+                                    rel="noopener">+55 51 99707-6102</a></dd>
+                        </div>
+                        <div>
+                            <dt data-i18n="stB">Base</dt>
+                            <dd data-i18n="stBv">Portão · Rio Grande do Sul</dd>
+                        </div>
+                        <div>
+                            <dt data-i18n="stC">Idiomas</dt>
+                            <dd data-i18n="stCv">Português · Inglês</dd>
+                        </div>
+                    </dl>
+                </div>
+                <form class="form" id="form" novalidate>
+                    <div class="field">
+                        <label for="nome"><span class="field__n">01</span><span data-i18n="fieldName">Nome</span></label>
+                        <input id="nome" name="nome" type="text" autocomplete="name" required
+                            aria-describedby="nomeErr">
+                        <p class="field__err" id="nomeErr" data-i18n="errName" hidden>Preencha seu nome.</p>
+                    </div>
+                    <div class="field">
+                        <label for="mensagem"><span class="field__n">02</span><span
+                                data-i18n="fieldMsg">Mensagem</span></label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required
+                            aria-describedby="msgErr"></textarea>
+                        <p class="field__err" id="msgErr" data-i18n="errMsg" hidden>Escreva sua mensagem.</p>
+                    </div>
+                    <button class="btn btn--solid btn--lg" type="submit" data-i18n="submit">Transmitir via
+                        WhatsApp</button>
+                    <p class="form__note" data-i18n="formNote">Ou me encontre no GitHub, LinkedIn e Instagram, na
+                        margem da folha.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="margem">
+        <div class="margem__inner">
+            <div class="margem__key">
+                <p class="tag" data-i18n="keyTag">Legenda</p>
+                <ul>
+                    <li><span class="key key--spot" aria-hidden="true"></span><span data-i18n="key1">Sítio
+                            levantado</span></li>
+                    <li><span class="key key--line" aria-hidden="true"></span><span data-i18n="key2">Traverso de
+                            leitura</span></li>
+                    <li><span class="key key--plate" aria-hidden="true"></span><span data-i18n="key3">Estampa do
+                            sistema</span></li>
+                </ul>
+            </div>
+            <div class="margem__links">
+                <p class="tag" data-i18n="linksTag">Contato</p>
+                <ul>
+                    <li><a href="https://github.com/bernardoeeee" target="_blank" rel="noopener">GitHub <span
+                                aria-hidden="true">↗</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/bernardo-varisco-fleck-aaa5b5272/" target="_blank"
+                            rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
+                    <li><a href="https://www.instagram.com/bvfleck/" target="_blank" rel="noopener">Instagram <span
+                                aria-hidden="true">↗</span></a></li>
+                </ul>
+            </div>
+            <div class="margem__colophon">
+                <p class="tag" data-i18n="colophonTag">Créditos da folha</p>
+                <p data-i18n="colophon">Folha desenhada e escrita por Bernardo Varisco Fleck. Relevo gerado no
+                    navegador. Carta esquemática, sem valor cartográfico.</p>
+                <p class="margem__year">MMXXVI</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+<script>
+function report() {
+  try {
+    var d = document.createElement('div');
+    d.style.cssText = 'position:fixed;left:0;top:0;z-index:99999;background:#fff;color:#000;font:26px/1.4 sans-serif;padding:10px';
+    d.textContent = 'CSSW=' + document.documentElement.clientWidth +
+      ' SCROLLW=' + document.documentElement.scrollWidth +
+      ' DOCH=' + document.documentElement.scrollHeight;
+    document.body.appendChild(d);
+  } catch (e) {}
+}
+setTimeout(report, 1500);
+setTimeout(report, 4000);
+</script>
+</body>
+
+</html>
