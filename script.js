@@ -343,86 +343,6 @@
        2. EDITION — one event re-letters the whole sheet
        --------------------------------------------------------- */
 
-    /* per-system detail: a crop of the same sky around that star */
-    var SITE_SPOTS = { '2': STARS[0], '3': STARS[1], '4': STARS[2], '5': STARS[3] };
-
-    function drawSiteVignettes() {
-        document.querySelectorAll('.sitevig').forEach(function (svg) {
-            var c = SITE_SPOTS[svg.getAttribute('data-vig')];
-            if (!c) return;
-            var W = 300, H = 190, r = 0.13;          // crop radius in field space
-            var u0 = Math.max(0, Math.min(1 - 2 * r, c[0] - r));
-            var v0 = Math.max(0, Math.min(1 - 2 * r * (H / W), c[1] - r * (H / W)));
-            var du = 2 * r, dv = 2 * r * (H / W);
-
-            function s(x, y) { return sample(u0 + x * du, v0 + y * dv); }
-
-            var gx = 68, gy = 44, sx = W / (gx - 1), sy = H / (gy - 1);
-            var here = s((c[0] - u0) / du, (c[1] - v0) / dv);
-            var frag = document.createDocumentFragment();
-
-            for (var li = -6; li <= 6; li++) {
-                var level = here + li * 0.018;
-                if (level <= 0 || level >= 1) continue;
-                var d = [];
-                for (var y = 0; y < gy - 1; y++) {
-                    for (var x = 0; x < gx - 1; x++) {
-                        var tl = s(x / (gx - 1), y / (gy - 1)), tr = s((x + 1) / (gx - 1), y / (gy - 1));
-                        var bl = s(x / (gx - 1), (y + 1) / (gy - 1)), br = s((x + 1) / (gx - 1), (y + 1) / (gy - 1));
-                        var idx = (tl > level ? 8 : 0) | (tr > level ? 4 : 0) | (br > level ? 2 : 0) | (bl > level ? 1 : 0);
-                        if (idx === 0 || idx === 15) continue;
-                        function ip(a, b) { return (level - a) / (b - a || 1e-6); }
-                        var px = x * sx, py = y * sy;
-                        var T = [px + sx * ip(tl, tr), py], R = [px + sx, py + sy * ip(tr, br)];
-                        var B = [px + sx * ip(bl, br), py + sy], L = [px, py + sy * ip(tl, bl)];
-                        var pr;
-                        switch (idx) {
-                            case 1: case 14: pr = [L, B]; break;
-                            case 2: case 13: pr = [B, R]; break;
-                            case 3: case 12: pr = [L, R]; break;
-                            case 4: case 11: pr = [T, R]; break;
-                            case 6: case 9: pr = [T, B]; break;
-                            case 7: case 8: pr = [L, T]; break;
-                            case 5: pr = [L, T, B, R]; break;
-                            case 10: pr = [L, B, T, R]; break;
-                            default: continue;
-                        }
-                        for (var k = 0; k < pr.length; k += 2) {
-                            d.push('M' + pr[k][0].toFixed(1) + ' ' + pr[k][1].toFixed(1) +
-                                'L' + pr[k + 1][0].toFixed(1) + ' ' + pr[k + 1][1].toFixed(1));
-                        }
-                    }
-                }
-                if (!d.length) continue;
-                frag.appendChild(svgEl('path', {
-                    d: d.join(''),
-                    class: 'vig-line' + (li === 0 ? ' vig-line--index' : '')
-                }));
-            }
-
-            var cx = ((c[0] - u0) / du) * W, cy = ((c[1] - v0) / dv) * H;
-            frag.appendChild(svgEl('circle', { cx: cx.toFixed(1), cy: cy.toFixed(1), r: 3.5, class: 'vig-spot' }));
-
-            // a handful of field stars, so the crop reads as sky
-            for (var si = 0; si < 26; si++) {
-                frag.appendChild(svgEl('circle', {
-                    cx: (hash(si, 71, SEED + 3) * W).toFixed(1),
-                    cy: (hash(si, 83, SEED + 7) * H).toFixed(1),
-                    r: (0.5 + hash(si, 97, SEED + 11) * 1.3).toFixed(2),
-                    class: 'vig-star'
-                }));
-            }
-
-            var label = svgEl('text', { x: 10, y: H - 10, class: 'vig-label' });
-            label.setAttribute('data-vig-label', '1');
-            label.textContent = VIG_LABEL[lang] || VIG_LABEL.pt;
-            frag.appendChild(label);
-
-            svg.appendChild(frag);
-        });
-    }
-
-    var VIG_LABEL = { pt: 'DETALHE · CAMPO 0,5°', en: 'DETAIL · FIELD 0.5°' };
 
     var EN = {
         skip: 'Skip to the catalogued systems',
@@ -439,8 +359,9 @@
         perfilTag: 'Light curve',
         perfilTitle: 'The observer',
         portraitCap: 'Observer · Portão, RS',
-        perfilP1: 'My name is Bernardo Varisco Fleck, I am 18 years old and I am from Rio Grande do Sul. I live in Portão and I am taking the Programming Technician course at Senac RS. Alongside it, I keep sharpening my knowledge with courses from Alura and Udemy, widening my technical and practical base.',
-        perfilP2: 'I am currently interning at BEG Support, which has contributed significantly to my professional and personal development, giving me real experience in the technology field. I am always looking for new learning and new challenges: my goal is to build a solid, consistent career in programming.',
+        perfilP1: 'I am a Systems Developer in training, currently working as an intern at BEG Support, where I work with Oracle APEX, PL/SQL and JavaScript to develop web solutions for clients across different industries.',
+        perfilP2: 'I completed a Technical Diploma in Programming at Senac RS, with a focus on front-end development (HTML, CSS and JavaScript) and relational database modelling. Throughout my training I built hands-on projects, including this personal portfolio, which features multi-language support and WhatsApp integration. I have also taken part in hackathons, experiences that strengthened my teamwork, my problem-solving and my ability to deliver under pressure.',
+        stackCap: 'Main technologies and tools',
         recA: 'Education',
         recB: 'Internship',
         recC: 'Systems built',
@@ -521,9 +442,6 @@
             if (dict[k] != null) el.innerHTML = dict[k];
         });
 
-        document.querySelectorAll('[data-vig-label]').forEach(function (t) {
-            t.textContent = VIG_LABEL[next] || VIG_LABEL.pt;
-        });
 
         var meta = META[next];
         document.documentElement.lang = meta.lang;
@@ -651,7 +569,6 @@
     buildField();
     drawSheet();
     drawProfile();
-    drawSiteVignettes();
     if (lang === 'en') setEdition('en', false);
     onScroll();
 

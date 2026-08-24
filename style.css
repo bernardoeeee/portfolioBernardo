@@ -825,39 +825,10 @@ h3 {
     align-content: start;
 }
 
-.sitevig {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 300 / 190;
-    border: 1px solid var(--pale-40);
-}
 
-.sitevig .vig-line {
-    fill: none;
-    stroke: rgba(240, 241, 235, .5);
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
-}
 
-.sitevig .vig-line--index {
-    stroke: var(--pale-70);
-    stroke-width: 1.5;
-}
 
-.sitevig .vig-spot {
-    fill: var(--flare);
-    stroke: var(--pale);
-    stroke-width: 1.5;
-}
 
-.sitevig .vig-label {
-    font-family: var(--narrow);
-    font-weight: 600;
-    font-size: 9px;
-    letter-spacing: .16em;
-    fill: var(--pale-70);
-    text-transform: uppercase;
-}
 
 /* stack legend */
 
@@ -869,6 +840,18 @@ h3 {
     margin: 1.4rem 0 1.7rem;
 }
 
+.site__body .legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .35rem .5rem;
+    max-width: 20rem;
+}
+
+.site__body .legend li {
+    justify-self: start;
+    padding: .18rem .5rem .22rem;
+}
+
 .legend li {
     display: inline-flex;
     align-items: center;
@@ -877,8 +860,8 @@ h3 {
     padding: .22rem .6rem .26rem;
     font-family: var(--narrow);
     font-weight: 600;
-    font-size: .74rem;
-    letter-spacing: .12em;
+    font-size: .68rem;
+    letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--pale-70);
 }
@@ -890,6 +873,16 @@ h3 {
     border: 1px solid currentColor;
     background-image: var(--hatch);
     flex: none;
+}
+
+.legend__caption {
+    margin: 1.5rem 0 -.9rem;
+    font-family: var(--narrow);
+    font-weight: 600;
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-60);
 }
 
 .legend--wide li {
@@ -1219,7 +1212,7 @@ h3 {
 
     .site__aside {
         grid-column: 2;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr);
         align-items: start;
     }
 
@@ -1442,7 +1435,74 @@ h3 {
     stroke-dasharray: none;
 }
 
-.sitevig .vig-star {
-    fill: var(--star);
-    opacity: .55;
+
+/* ---------------- sites: 2 x 2 pairing (wide screens) ---------------- */
+
+@media (min-width: 1000px) {
+    .sites {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 2px;
+    }
+
+    /* the traverse becomes the left margin rail of the whole block */
+    .traverse {
+        left: .9rem;
+    }
+
+    .site__inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.6rem;
+        padding: clamp(2.25rem, 5vh, 3.5rem) clamp(1.75rem, 3vw, 3rem);
+        max-width: none;
+        height: 100%;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .site__meta {
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0 0 .5rem;
+        border-bottom: 1px solid var(--pale-40);
+    }
+
+    .site__n {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .site__ref {
+        writing-mode: horizontal-tb;
+    }
+
+    .site__body h3 {
+        font-size: clamp(1.9rem, 2.6vw, 2.9rem);
+    }
+
+    /* the text runs the full width of its box, ragged right */
+    .site__line {
+        font-size: clamp(1.05rem, 1.1vw + .6rem, 1.25rem);
+        max-width: none;
+        text-align: left;
+    }
+
+    .site__body .notes {
+        max-width: none;
+        text-align: left;
+    }
+
+    .site__body .legend {
+        max-width: none;
+    }
+
+    /* every plate lands on the same baseline, at the same size */
+    .site__aside {
+        grid-column: auto;
+        grid-template-columns: minmax(0, 1fr);
+        align-self: end;
+        justify-self: start;
+        width: min(100%, 20rem);
+    }
 }
