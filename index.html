@@ -8,7 +8,8 @@
     <meta name="description"
         content="Carta celeste dos trabalhos de Bernardo Varisco Fleck: quatro sistemas construídos, repositórios públicos, técnico em programação no Senac RS.">
     <meta property="og:title" content="Bernardo Varisco Fleck — Carta Celeste" />
-    <meta property="og:description" content="Quatro sistemas construídos. Repositórios públicos. Carta celeste SO-22, Portão / RS." />
+    <meta property="og:description"
+        content="Quatro sistemas construídos. Repositórios públicos. Carta celeste SO-22, Portão / RS." />
     <meta property="og:image" content="https://bernardoeeee.github.io/portfolioBernardo/assets/RastriMed.jpg" />
     <meta property="og:url" content="https://bernardoeeee.github.io/portfolioBernardo/" />
     <meta property="og:type" content="website" />
@@ -18,51 +19,19 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Archivo:wght@400;500;600&family=Spectral:ital,wght@1,300;1,400&display=swap">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/rocket.png">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/favicon-180.png">
 </head>
 
 <body>
-    <!--
-    THESIS: A celestial chart, not a portfolio. This page refuses the dark
-      card-grid portfolio with a neon accent and a "hi, I'm ___" hero; the sky
-      and the four catalogued systems are the argument.
-    OWN-WORLD: A star chart drawn in two blues and starlight. Void #060C18 and
-      field #0E1B33 are the only grounds; #CBDDF2 is the ink and #F2F7FF the
-      star. One accent, #4EA8DE, carries the constellation line and every link.
-      Hairline rules at 32% ink, stipple, zero soft shadows. Archivo Narrow
-      letterspaced caps for chart lettering, Spectral italic for star names
-      (the atlas convention), no monospace anywhere.
-    STORY: An 18-year-old already ships working database systems. The visitor
-      reads four catalogued systems with public repositories, then transmits a
-      message or follows a link.
-    FIRST VIEWPORT: Full-bleed sky. Nebulosity in two blues under a
-      magnitude-sorted star field, marching-squares isophotes and a
-      right-ascension graticule. Chart collar across the top with a live RA/Dec
-      readout and the edition toggle. Title block at left, condensed caps at
-      display scale over an italic line. Four named stars sit on the sky joined
-      by one constellation line and are the primary action; declination scale
-      and credentials along the bottom margin.
-    FORM: Celestial survey, from the topographic survey of Rio Grande do Sul,
-      candidate 6 of the ordered grounded list, seed key 18abb911. Pinned to
-      space and a two-colour blue palette by the user. Raised by MASS (cloud
-      quarry), HAIRLINE CHROME (one-bit desktop), FOCUS DISCLOSURE (streaming
-      wall), ONE UNBROKEN LINE (drum machine step row), SURFACE-WIDE STATE
-      (chromatophore skin).
-    FINISH: unreviewed and undocumented is unfinished; this build ends with the
-      finish review, the verdict, DESIGN.md, and every shipping raster carrying
-      its provenance.
-    -->
 
     <a class="skip" href="#sitios" data-i18n="skip">Ir para os sistemas catalogados</a>
 
     <div class="collar" role="banner">
         <div class="collar__sheet">
-            <span class="collar__label" data-i18n="collarSheet">Carta</span>
-            <span class="collar__value">SO-22 · PORTÃO · RS</span>
         </div>
         <div class="collar__grid" aria-live="polite">
-            <span class="collar__label" data-i18n="collarGrid">Ascensão reta</span>
-            <span class="collar__value" id="gridRef">AR 04h 12m · DEC −29° 41′</span>
         </div>
         <div class="collar__edition">
             <span class="collar__label" data-i18n="collarEdition">Edição</span>
@@ -81,86 +50,76 @@
             <div class="sheet__vignette" aria-hidden="true"></div>
 
             <div class="sheet__block">
-                <p class="overline" data-i18n="sheetOverline">Carta de trabalho · 2024 — 2026</p>
+                <p class="overline" id="year"></p>
                 <h1 id="sheetTitle">Bernardo<br>Varisco<br>Fleck</h1>
-                <p class="lede" data-i18n="sheetLede">Tenho 18 anos e quatro sistemas construídos, de código aberto.
-                    Isto é o levantamento deles.</p>
+                <p class="lede" data-i18n="sheetLede">Tenho <span id="age"></span> anos e aluns sistemas construídos, de
+                    código aberto.</p>
                 <div class="sheet__actions">
-                    <a class="btn btn--solid" href="#sitios" data-i18n="sheetCta">Ver os quatro sistemas</a>
+                    <a class="btn btn--solid" href="#sitios" data-i18n="sheetCta">Ver os sistemas</a>
                     <a class="btn" href="#contato" data-i18n="sheetCta2">Falar comigo</a>
                 </div>
             </div>
 
             <ul class="spots" id="spots" aria-label="Sistemas catalogados">
                 <li class="spot" style="--x:70%; --y:24%"><a href="#sitio-1"><span class="spot__mark"
-                            aria-hidden="true"></span><span class="spot__n">01</span><span
-                            class="spot__name">Hackaton + Saúde</span><span class="spot__h">mag 4,12</span></a></li>
+                            aria-hidden="true"></span><span class="spot__n">01</span><span class="spot__name">Hackaton +
+                            Saúde</span></a></li>
                 <li class="spot" style="--x:87%; --y:45%"><a href="#sitio-2"><span class="spot__mark"
                             aria-hidden="true"></span><span class="spot__n">02</span><span
-                            class="spot__name">SmartFlow</span><span class="spot__h">mag 3,86</span></a></li>
+                            class="spot__name">SmartFlow</span></a></li>
                 <li class="spot" style="--x:64%; --y:64%"><a href="#sitio-3"><span class="spot__mark"
                             aria-hidden="true"></span><span class="spot__n">03</span><span
-                            class="spot__name">FoodMind</span><span class="spot__h">mag 2,97</span></a></li>
+                            class="spot__name">FoodMind</span></a></li>
                 <li class="spot" style="--x:83%; --y:81%"><a href="#sitio-4"><span class="spot__mark"
                             aria-hidden="true"></span><span class="spot__n">04</span><span
-                            class="spot__name">DevFeira</span><span class="spot__h">mag 2,40</span></a></li>
+                            class="spot__name">DevFeira</span></a></li>
             </ul>
 
             <div class="sheet__margin">
                 <div class="scalebar" aria-hidden="true">
-                    <div class="scalebar__bar"><i></i><i></i><i></i><i></i></div>
-                    <div class="scalebar__ticks"><span>0°</span><span>1°</span><span>2°</span><span>3°</span><span>4°</span>
-                    </div>
                 </div>
-                <p class="credentials"><span data-i18n="credA">Técnico em Programação · Senac RS</span><span
-                        class="sep" aria-hidden="true">·</span><span data-i18n="credB">Estagiário · BEG Support</span><span
-                        class="sep" aria-hidden="true">·</span><span data-i18n="credC">Portão, Rio Grande do Sul</span></p>
+                <p class="credentials"><span data-i18n="credA">Técnico em Programação - Senac RS</span><span class="sep"
+                        aria-hidden="true">·</span><span data-i18n="credB">Estagiário - BEG Support</span><span
+                        class="sep" aria-hidden="true">·</span><span data-i18n="credC">Portão, Rio Grande do Sul</span>
+                </p>
             </div>
         </section>
 
         <!-- ============ PROFILE SECTION ============ -->
         <section class="perfil" id="perfil" aria-labelledby="perfilTitle">
             <div class="band__head">
-                <p class="tag" data-i18n="perfilTag">Curva de luz</p>
-                <h2 id="perfilTitle" data-i18n="perfilTitle">O observador</h2>
+                <h2 id="perfilTitle" data-i18n="perfilTitle">Sobre mim</h2>
             </div>
             <div class="perfil__grid">
                 <figure class="plate plate--portrait">
                     <img src="assets/eu.jpg" alt="Bernardo Varisco Fleck, retrato" loading="lazy" decoding="async">
-                    <figcaption><span class="plate__n">Est. 1</span><span data-i18n="portraitCap">Observador · Portão,
-                            RS</span></figcaption>
+                    <figcaption><span data-i18n="portraitCap"> Desenvolvedor de Sistemas</span></figcaption>
                 </figure>
                 <div class="perfil__notes">
-                    <div class="section">
-                        <svg class="profileline" viewBox="0 0 600 88" aria-hidden="true"
-                            preserveAspectRatio="none">
-                            <path id="profileFill" d="" />
-                            <path id="profilePath" d="" />
-                        </svg>
-                        <p class="section__caption"><span data-i18n="sectionA">Curva sintética</span><span
-                                data-i18n="sectionB">Amplitude esquemática</span></p>
-                    </div>
                     <p class="notes" data-i18n="perfilP1">Sou Desenvolvedor de Sistemas em formação e atualmente atuo
                         como estagiário na BEG Support, onde trabalho com Oracle APEX, PL/SQL e JavaScript no
                         desenvolvimento de soluções web para clientes de diferentes segmentos.</p>
-                    <p class="notes" data-i18n="perfilP2">Concluí o Técnico em Programação pelo Senac RS, com foco em
-                        desenvolvimento front-end (HTML, CSS e JavaScript) e modelagem de bancos de dados relacionais.
-                        Ao longo da minha formação, desenvolvi projetos práticos, incluindo meu portfólio pessoal, que
-                        conta com suporte a múltiplos idiomas e integração com o WhatsApp, além de participar de
+                    <p class="notes" data-i18n="perfilP2">Conclui o Técnico em Programação pelo Senac RS, com foco em
+                        desenvolvimento Full-Stack (HTML, CSS e JavaScript) e modelagem de bancos de dados relacionais.
+                        Ao longo da minha formação, desenvolvi projetos práticos, além de participar de
                         hackathons, experiências que fortaleceram minha capacidade de trabalhar em equipe, resolver
-                        problemas e entregar soluções sob pressão.</p>
+                        problemas e entregar soluções.</p>
                     <dl class="record">
                         <div>
-                            <dt data-i18n="recA">Formação</dt>
+                            <dt data-i18n="recA">Ensino Médio</dt>
                             <dd>Senac RS</dd>
                         </div>
                         <div>
+                            <dt data-i18n="recA">Ensino Superior</dt>
+                            <dd>Unisinos</dd>
+                        </div>
+                        <div>
                             <dt data-i18n="recB">Estágio</dt>
-                            <dd>BEG Support</dd>
+                            <dd>Beg Support</dd>
                         </div>
                         <div>
                             <dt data-i18n="recC">Sistemas construídos</dt>
-                            <dd>4</dd>
+                            <dd>+ 4</dd>
                         </div>
                         <div>
                             <dt data-i18n="recD">Repositórios</dt>
@@ -173,8 +132,7 @@
                         <li>PL/SQL</li>
                         <li>SQL</li>
                         <li>JavaScript</li>
-                        <li>HTML5</li>
-                        <li>CSS3</li>
+                        <li>Node.js</li>
                         <li>Git</li>
                     </ul>
                 </div>
@@ -197,7 +155,6 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">01</span>
-                        <span class="site__ref">AR 04h 12m · DEC −29° 41′</span>
                     </div>
                     <div class="site__body">
                         <h3 id="s1" data-i18n="s1Title">Hackaton + Saúde</h3>
@@ -208,8 +165,8 @@
                             plataforma permite registro, busca, atualização e remoção de instrumentos, oferecendo mais
                             controle e segurança durante os procedimentos médicos.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML</li>
-                            <li>CSS</li>
+                            <li>HTML - CSS</li>
+                            <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
                         </ul>
@@ -221,7 +178,7 @@
                         <figure class="plate plate--mark">
                             <img src="assets/RastriMed.jpg" loading="lazy" decoding="async"
                                 alt="Marca do sistema Hackaton + Saúde">
-                            <figcaption><span class="plate__n">Est. 2</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                            <figcaption><span data-i18n="markCap">Marca do sistema</span></figcaption>
                         </figure>
                     </div>
                 </div>
@@ -231,7 +188,6 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">02</span>
-                        <span class="site__ref">AR 05h 38m · DEC −31° 06′</span>
                     </div>
                     <div class="site__body">
                         <h3 id="s2" data-i18n="s2Title">SmartFlow</h3>
@@ -243,8 +199,8 @@
                             acesso segmentado e seguro, visualizando apenas os dados e funcionalidades compatíveis com
                             seu perfil e nível de permissão dentro da plataforma.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML</li>
-                            <li>CSS</li>
+                            <li>HTML - CSS</li>
+                            <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
                         </ul>
@@ -256,7 +212,7 @@
                         <figure class="plate plate--mark">
                             <img src="assets/SmartFlow.jpg" loading="lazy" decoding="async"
                                 alt="Marca do sistema SmartFlow">
-                            <figcaption><span class="plate__n">Est. 3</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                            <figcaption><span data-i18n="markCap">Marca do sistema</span></figcaption>
                         </figure>
                     </div>
                 </div>
@@ -266,7 +222,6 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">03</span>
-                        <span class="site__ref">AR 06h 24m · DEC −28° 17′</span>
                     </div>
                     <div class="site__body">
                         <h3 id="s3" data-i18n="s3Title">FoodMind</h3>
@@ -277,8 +232,8 @@
                             gestão de lembretes e eventos pessoais, além de integrar funcionalidades de comunicação e
                             personalização de perfil.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML</li>
-                            <li>CSS</li>
+                            <li>HTML - CSS</li>
+                            <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
                             <li>Socket.io</li>
@@ -291,7 +246,7 @@
                         <figure class="plate plate--mark">
                             <img src="assets/FoodMind.jpg" loading="lazy" decoding="async"
                                 alt="Marca do sistema FoodMind">
-                            <figcaption><span class="plate__n">Est. 4</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                            <figcaption><span data-i18n="markCap">Marca do sistema</span></figcaption>
                         </figure>
                     </div>
                 </div>
@@ -301,7 +256,6 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">04</span>
-                        <span class="site__ref">AR 07h 51m · DEC −30° 52′</span>
                     </div>
                     <div class="site__body">
                         <h3 id="s4" data-i18n="s4Title">DevFeira</h3>
@@ -313,21 +267,20 @@
                             designers e projetos. Nelas, os usuários podem postar dúvidas ou dicas acompanhadas de
                             imagens.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML</li>
-                            <li>CSS</li>
+                            <li>HTML - CSS</li>
+                            <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
                         </ul>
-                        <a class="btn btn--solid"
-                            href="https://github.com/bernardoeeee/Hackathon-3B-FeiraTrocaDigital" target="_blank"
-                            rel="noopener"><span data-i18n="repo">Repositório</span> <span
+                        <a class="btn btn--solid" href="https://github.com/bernardoeeee/Hackathon-3B-FeiraTrocaDigital"
+                            target="_blank" rel="noopener"><span data-i18n="repo">Repositório</span> <span
                                 aria-hidden="true">↗</span></a>
                     </div>
                     <div class="site__aside">
                         <figure class="plate plate--mark">
                             <img src="assets/DevFeira.jpg" loading="lazy" decoding="async"
                                 alt="Marca do sistema DevFeira">
-                            <figcaption><span class="plate__n">Est. 5</span><span data-i18n="markCap">Marca do sistema</span></figcaption>
+                            <figcaption><span data-i18n="markCap">Marca do sistema</span></figcaption>
                         </figure>
                     </div>
                 </div>
@@ -338,29 +291,14 @@
         <section class="contato" id="contato" aria-labelledby="contatoTitle">
             <div class="contato__inner">
                 <div class="contato__head">
-                    <p class="tag" data-i18n="contatoTag">Transmissão</p>
                     <h2 id="contatoTitle" data-i18n="contatoTitle">Transmitir uma mensagem</h2>
-                    <p class="lede lede--sm" data-i18n="contatoLede">Escreva abaixo. A mensagem abre já pronta no meu
+                    <p class="lede lede--sm" data-i18n="contatoLede">Escreva ao lado. A mensagem abre já pronta no meu
                         WhatsApp, sem passar por servidor nenhum.</p>
-                    <dl class="station">
-                        <div>
-                            <dt data-i18n="stA">WhatsApp</dt>
-                            <dd><a href="https://wa.me/5551997076102" target="_blank"
-                                    rel="noopener">+55 51 99707-6102</a></dd>
-                        </div>
-                        <div>
-                            <dt data-i18n="stB">Base</dt>
-                            <dd data-i18n="stBv">Portão · Rio Grande do Sul</dd>
-                        </div>
-                        <div>
-                            <dt data-i18n="stC">Idiomas</dt>
-                            <dd data-i18n="stCv">Português · Inglês</dd>
-                        </div>
-                    </dl>
                 </div>
                 <form class="form" id="form" novalidate>
                     <div class="field">
-                        <label for="nome"><span class="field__n">01</span><span data-i18n="fieldName">Nome</span></label>
+                        <label for="nome"><span class="field__n">01</span><span
+                                data-i18n="fieldName">Nome</span></label>
                         <input id="nome" name="nome" type="text" autocomplete="name" required
                             aria-describedby="nomeErr">
                         <p class="field__err" id="nomeErr" data-i18n="errName" hidden>Preencha seu nome.</p>
@@ -368,8 +306,7 @@
                     <div class="field">
                         <label for="mensagem"><span class="field__n">02</span><span
                                 data-i18n="fieldMsg">Mensagem</span></label>
-                        <textarea id="mensagem" name="mensagem" rows="5" required
-                            aria-describedby="msgErr"></textarea>
+                        <textarea id="mensagem" name="mensagem" rows="5" required aria-describedby="msgErr"></textarea>
                         <p class="field__err" id="msgErr" data-i18n="errMsg" hidden>Escreva sua mensagem.</p>
                     </div>
                     <button class="btn btn--solid btn--lg" type="submit" data-i18n="submit">Transmitir via
@@ -383,17 +320,6 @@
 
     <footer class="margem">
         <div class="margem__inner">
-            <div class="margem__key">
-                <p class="tag" data-i18n="keyTag">Legenda</p>
-                <ul>
-                    <li><span class="key key--spot" aria-hidden="true"></span><span data-i18n="key1">Sistema
-                            catalogado</span></li>
-                    <li><span class="key key--line" aria-hidden="true"></span><span data-i18n="key2">Linha da
-                            constelação</span></li>
-                    <li><span class="key key--plate" aria-hidden="true"></span><span data-i18n="key3">Estampa do
-                            sistema</span></li>
-                </ul>
-            </div>
             <div class="margem__links">
                 <p class="tag" data-i18n="linksTag">Contato</p>
                 <ul>
@@ -407,9 +333,7 @@
             </div>
             <div class="margem__colophon">
                 <p class="tag" data-i18n="colophonTag">Créditos da carta</p>
-                <p data-i18n="colophon">Carta desenhada e escrita por Bernardo Varisco Fleck. Céu gerado no
-                    navegador. Carta esquemática e sintética, sem valor astronômico.</p>
-                <p class="margem__year">MMXXVI</p>
+                <p data-i18n="colophon">Carta desenhada e escrita por Bernardo Varisco Fleck.</p>
             </div>
         </div>
     </footer>

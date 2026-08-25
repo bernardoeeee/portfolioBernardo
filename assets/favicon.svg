@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Bernardo Varisco Fleck">
+  <defs>
+    <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1528"/>
+      <stop offset="1" stop-color="#060C18"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#7FC4F0" stop-opacity="0.55"/>
+      <stop offset="0.55" stop-color="#4EA8DE" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#4EA8DE" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spikeH" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#F2F7FF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#F2F7FF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#F2F7FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="spikeV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2F7FF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#F2F7FF" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#F2F7FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="32" height="32" rx="7" fill="url(#plate)"/>
+
+  <!-- the asterism: four catalogued systems, one line -->
+  <polyline points="6.5,13.5 12.5,24 21.5,21.5 23.5,9"
+            fill="none" stroke="#4EA8DE" stroke-opacity="0.9"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- magnitudes 2-4 -->
+  <circle cx="21.5" cy="21.5" r="1.35" fill="#F2F7FF"/>
+  <circle cx="6.5" cy="13.5" r="1.55" fill="#F2F7FF"/>
+  <circle cx="12.5" cy="24" r="1.7" fill="#F2F7FF"/>
+
+  <!-- magnitude 1: the terminus -->
+  <circle cx="23.5" cy="9" r="6.4" fill="url(#halo)"/>
+  <rect x="17.7" y="8.58" width="11.6" height="0.84" rx="0.42" fill="url(#spikeH)"/>
+  <rect x="23.08" y="3.2" width="0.84" height="11.6" rx="0.42" fill="url(#spikeV)"/>
+  <circle cx="23.5" cy="9" r="2.55" fill="#F2F7FF"/>
+</svg>

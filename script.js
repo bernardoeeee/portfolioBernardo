@@ -1,13 +1,3 @@
-/* ============================================================
-   CARTA CELESTE SO-22 — chart behaviour
-   1. sky: value-noise field -> nebulosity in two blues (canvas),
-      a magnitude-sorted star field, marching-squares isophotes
-      and a right-ascension grid (SVG)
-   2. constellation: one unbroken line through the four systems
-   3. edition: the whole chart is re-lettered as one event
-   4. transmission: validation, then a ready-made WhatsApp message
-   ============================================================ */
-
 (function () {
     'use strict';
 
@@ -585,3 +575,14 @@
         }, 180);
     });
 }());
+
+function setDateYear() {
+    let age = document.getElementById("age");
+    let year = document.getElementById("year");
+
+    const date = new Date();
+
+    year.innerHTML = date.getFullYear();
+    age.innerHTML = date.getFullYear() - 2007;
+}
+setDateYear();
