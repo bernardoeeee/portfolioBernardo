@@ -26,12 +26,164 @@
 
 <body>
 
+    <!-- ============================================================
+         THE BODIES — one planet per catalogued system. Drawn, not
+         photographed: a lit limb, a terminator falling into the void,
+         and the surface each body actually has. Colour is pulled down
+         toward the sheet's night register, as through an eyepiece
+         rather than off a press release.
+         ============================================================ -->
+    <svg class="sprite" aria-hidden="true" focusable="false">
+        <defs>
+            <!-- 01 VÊNUS — one unbroken sulphuric cloud deck, the highest albedo in the sky -->
+            <radialGradient id="venBody" cx=".34" cy=".27" r=".95">
+                <stop offset="0" stop-color="#FDF7E6" />
+                <stop offset=".38" stop-color="#EFDFBE" />
+                <stop offset=".76" stop-color="#CBAF80" />
+                <stop offset="1" stop-color="#826C48" />
+            </radialGradient>
+
+            <!-- 02 URANO — an ice giant, near featureless, tipped 98° onto its side -->
+            <radialGradient id="uraBody" cx=".36" cy=".29" r=".95">
+                <stop offset="0" stop-color="#CDEEF2" />
+                <stop offset=".42" stop-color="#9CCFD9" />
+                <stop offset=".78" stop-color="#5A93A3" />
+                <stop offset="1" stop-color="#2E5361" />
+            </radialGradient>
+
+            <!-- 03 JÚPITER — zones and belts, and the storm that has outlived every observer of it -->
+            <radialGradient id="jupBody" cx=".35" cy=".28" r=".95">
+                <stop offset="0" stop-color="#F0E2C4" />
+                <stop offset=".45" stop-color="#D6BC92" />
+                <stop offset=".8" stop-color="#9C7B52" />
+                <stop offset="1" stop-color="#5B462C" />
+            </radialGradient>
+
+            <!-- 04 SATURNO — the rings, with the Cassini division open between A and B -->
+            <radialGradient id="satBody" cx=".35" cy=".28" r=".95">
+                <stop offset="0" stop-color="#F4E6BE" />
+                <stop offset=".42" stop-color="#DCC494" />
+                <stop offset=".78" stop-color="#A98C5A" />
+                <stop offset="1" stop-color="#5E4C30" />
+            </radialGradient>
+
+            <!-- the night side: every body falls into the same void -->
+            <linearGradient id="night" x1=".14" y1=".1" x2=".9" y2=".92">
+                <stop offset=".3" stop-color="#060C18" stop-opacity="0" />
+                <stop offset=".72" stop-color="#060C18" stop-opacity=".52" />
+                <stop offset="1" stop-color="#060C18" stop-opacity=".88" />
+            </linearGradient>
+
+            <clipPath id="venClip">
+                <circle cx="50" cy="50" r="28" />
+            </clipPath>
+            <clipPath id="uraClip">
+                <circle cx="50" cy="50" r="25" />
+            </clipPath>
+            <clipPath id="jupClip">
+                <circle cx="50" cy="50" r="34" />
+            </clipPath>
+            <clipPath id="satClip">
+                <circle cx="50" cy="50" r="27" />
+            </clipPath>
+
+            <!-- the near half of a ring system, in the ring's own tilted frame -->
+            <clipPath id="satFront" clipPathUnits="userSpaceOnUse">
+                <rect x="-10" y="50" width="120" height="60" />
+            </clipPath>
+            <clipPath id="uraFront" clipPathUnits="userSpaceOnUse">
+                <rect x="-10" y="50" width="120" height="60" />
+            </clipPath>
+        </defs>
+
+        <symbol id="p-venus" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="28" fill="url(#venBody)" />
+            <g clip-path="url(#venClip)">
+                <ellipse cx="44" cy="36" rx="34" ry="3.4" fill="#FBF4E2" opacity=".26" />
+                <ellipse cx="54" cy="47" rx="32" ry="2.6" fill="#8C7346" opacity=".2" />
+                <ellipse cx="46" cy="58" rx="33" ry="3" fill="#F7EEDA" opacity=".16" />
+                <ellipse cx="52" cy="66" rx="30" ry="2.2" fill="#8C7346" opacity=".18" />
+            </g>
+            <circle cx="50" cy="50" r="28" fill="url(#night)" />
+        </symbol>
+
+        <symbol id="p-uranus" viewBox="0 0 100 100">
+            <!-- rings stand almost upright: the planet rolls along its orbit -->
+            <g transform="rotate(-74 50 50)">
+                <path fill="#9FC9D4" fill-rule="evenodd" opacity=".5"
+                    d="M8,50 a42,5.04 0 1,0 84,0 a42,5.04 0 1,0 -84,0 Z M10,50 a40,4.8 0 1,0 80,0 a40,4.8 0 1,0 -80,0 Z" />
+                <path fill="#7FAAB8" fill-rule="evenodd" opacity=".3"
+                    d="M16,50 a34,4.08 0 1,0 68,0 a34,4.08 0 1,0 -68,0 Z M17,50 a33,3.96 0 1,0 66,0 a33,3.96 0 1,0 -66,0 Z" />
+            </g>
+            <circle cx="50" cy="50" r="25" fill="url(#uraBody)" />
+            <g clip-path="url(#uraClip)">
+                <ellipse cx="48" cy="42" rx="28" ry="4" fill="#D6F0F5" opacity=".12" />
+                <ellipse cx="50" cy="60" rx="26" ry="3.4" fill="#3F6E7D" opacity=".14" />
+            </g>
+            <g transform="rotate(-74 50 50)">
+                <g clip-path="url(#uraFront)">
+                    <path fill="#9FC9D4" fill-rule="evenodd" opacity=".5"
+                        d="M8,50 a42,5.04 0 1,0 84,0 a42,5.04 0 1,0 -84,0 Z M10,50 a40,4.8 0 1,0 80,0 a40,4.8 0 1,0 -80,0 Z" />
+                    <path fill="#7FAAB8" fill-rule="evenodd" opacity=".3"
+                        d="M16,50 a34,4.08 0 1,0 68,0 a34,4.08 0 1,0 -68,0 Z M17,50 a33,3.96 0 1,0 66,0 a33,3.96 0 1,0 -66,0 Z" />
+                </g>
+            </g>
+            <circle cx="50" cy="50" r="25" fill="url(#night)" />
+        </symbol>
+
+        <symbol id="p-jupiter" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="34" fill="url(#jupBody)" />
+            <g clip-path="url(#jupClip)">
+                <ellipse cx="50" cy="26" rx="42" ry="4.6" fill="#9B7B52" opacity=".34" />
+                <ellipse cx="50" cy="34" rx="42" ry="3.4" fill="#F2E6C8" opacity=".38" />
+                <ellipse cx="50" cy="41" rx="42" ry="3.8" fill="#A07F55" opacity=".42" />
+                <ellipse cx="50" cy="49" rx="42" ry="3" fill="#F4E9CE" opacity=".34" />
+                <ellipse cx="50" cy="56" rx="42" ry="4.2" fill="#96754C" opacity=".44" />
+                <ellipse cx="50" cy="64" rx="42" ry="3.2" fill="#EFE2C2" opacity=".3" />
+                <ellipse cx="50" cy="72" rx="42" ry="4" fill="#8E7048" opacity=".36" />
+                <!-- the Great Red Spot, in the southern belt where it belongs -->
+                <ellipse cx="36" cy="60" rx="8.5" ry="4.2" fill="#C07A55" opacity=".72" transform="rotate(-4 36 60)" />
+                <ellipse cx="36" cy="60" rx="5.5" ry="2.4" fill="#D08E66" opacity=".5" transform="rotate(-4 36 60)" />
+            </g>
+            <circle cx="50" cy="50" r="34" fill="url(#night)" />
+        </symbol>
+
+        <symbol id="p-saturn" viewBox="0 0 100 100">
+            <g transform="rotate(-19 50 50)">
+                <path fill="#D8C296" fill-rule="evenodd" opacity=".62"
+                    d="M3,50 a47,12.78 0 1,0 94,0 a47,12.78 0 1,0 -94,0 Z M8.5,50 a41.5,11.29 0 1,0 83,0 a41.5,11.29 0 1,0 -83,0 Z" />
+                <path fill="#E4D2AC" fill-rule="evenodd" opacity=".78"
+                    d="M10.5,50 a39.5,10.74 0 1,0 79,0 a39.5,10.74 0 1,0 -79,0 Z M19,50 a31,8.43 0 1,0 62,0 a31,8.43 0 1,0 -62,0 Z" />
+                <path fill="#C0AC84" fill-rule="evenodd" opacity=".34"
+                    d="M20,50 a30,8.16 0 1,0 60,0 a30,8.16 0 1,0 -60,0 Z M22,50 a28,7.62 0 1,0 56,0 a28,7.62 0 1,0 -56,0 Z" />
+            </g>
+            <circle cx="50" cy="50" r="27" fill="url(#satBody)" />
+            <g clip-path="url(#satClip)">
+                <ellipse cx="50" cy="40" rx="30" ry="3.4" fill="#F6EACA" opacity=".24" />
+                <ellipse cx="50" cy="58" rx="30" ry="3" fill="#8E7448" opacity=".22" />
+                <!-- the rings lay their own shadow across the globe -->
+                <ellipse cx="50" cy="54" rx="30" ry="3.6" fill="#26200F" opacity=".4" transform="rotate(-19 50 50)" />
+            </g>
+            <g transform="rotate(-19 50 50)">
+                <g clip-path="url(#satFront)">
+                    <path fill="#D8C296" fill-rule="evenodd" opacity=".62"
+                        d="M3,50 a47,12.78 0 1,0 94,0 a47,12.78 0 1,0 -94,0 Z M8.5,50 a41.5,11.29 0 1,0 83,0 a41.5,11.29 0 1,0 -83,0 Z" />
+                    <path fill="#E4D2AC" fill-rule="evenodd" opacity=".78"
+                        d="M10.5,50 a39.5,10.74 0 1,0 79,0 a39.5,10.74 0 1,0 -79,0 Z M19,50 a31,8.43 0 1,0 62,0 a31,8.43 0 1,0 -62,0 Z" />
+                    <path fill="#C0AC84" fill-rule="evenodd" opacity=".34"
+                        d="M20,50 a30,8.16 0 1,0 60,0 a30,8.16 0 1,0 -60,0 Z M22,50 a28,7.62 0 1,0 56,0 a28,7.62 0 1,0 -56,0 Z" />
+                </g>
+            </g>
+            <circle cx="50" cy="50" r="27" fill="url(#night)" />
+        </symbol>
+    </svg>
+
     <a class="skip" href="#sitios" data-i18n="skip">Ir para os sistemas catalogados</a>
 
     <div class="collar" role="banner">
         <div class="collar__sheet">
         </div>
-        <div class="collar__grid" aria-live="polite">
+        <div class="collar__grid">
         </div>
         <div class="collar__edition">
             <span class="collar__label" data-i18n="collarEdition">Edição</span>
@@ -46,14 +198,14 @@
         <!-- ============ SHEET FACE ============ -->
         <section class="sheet" id="inicio" aria-labelledby="sheetTitle">
             <canvas class="sheet__relief" id="relief" aria-hidden="true"></canvas>
-            <svg class="sheet__contours" id="contours" aria-hidden="true" preserveAspectRatio="none"></svg>
+            <svg class="sheet__plane" id="plane" aria-hidden="true" preserveAspectRatio="none"></svg>
             <div class="sheet__vignette" aria-hidden="true"></div>
 
             <div class="sheet__block">
                 <p class="overline" id="year"></p>
                 <h1 id="sheetTitle">Bernardo<br>Varisco<br>Fleck</h1>
-                <p class="lede" data-i18n="sheetLede">Tenho <span id="age"></span> anos e aluns sistemas construídos, de
-                    código aberto.</p>
+                <p class="lede" data-i18n="sheetLede">Tenho <span id="age"></span> anos e alguns sistemas construídos,
+                    de código aberto.</p>
                 <div class="sheet__actions">
                     <a class="btn btn--solid" href="#sitios" data-i18n="sheetCta">Ver os sistemas</a>
                     <a class="btn" href="#contato" data-i18n="sheetCta2">Falar comigo</a>
@@ -61,25 +213,61 @@
             </div>
 
             <ul class="spots" id="spots" aria-label="Sistemas catalogados">
-                <li class="spot" style="--x:70%; --y:24%"><a href="#sitio-1"><span class="spot__mark"
-                            aria-hidden="true"></span><span class="spot__n">01</span><span class="spot__name">Hackaton +
-                            Saúde</span></a></li>
-                <li class="spot" style="--x:87%; --y:45%"><a href="#sitio-2"><span class="spot__mark"
-                            aria-hidden="true"></span><span class="spot__n">02</span><span
-                            class="spot__name">SmartFlow</span></a></li>
-                <li class="spot" style="--x:64%; --y:64%"><a href="#sitio-3"><span class="spot__mark"
-                            aria-hidden="true"></span><span class="spot__n">03</span><span
-                            class="spot__name">FoodMind</span></a></li>
-                <li class="spot" style="--x:83%; --y:81%"><a href="#sitio-4"><span class="spot__mark"
-                            aria-hidden="true"></span><span class="spot__n">04</span><span
-                            class="spot__name">DevFeira</span></a></li>
+                <li class="spot" style="--x:53%; --y:17%; --size:42px">
+                    <a href="#sitio-1">
+                        <span class="spot__mark" aria-hidden="true">
+                            <svg class="planet">
+                                <use href="#p-venus" />
+                            </svg>
+                        </span>
+                        <span class="spot__n">01</span>
+                        <span class="spot__name" data-i18n="s1Title">Hackaton + Saúde</span>
+                        <span class="spot__body" data-i18n="pl1">Vênus</span>
+                    </a>
+                </li>
+                <li class="spot" style="--x:64%; --y:36%; --size:54px">
+                    <a href="#sitio-2">
+                        <span class="spot__mark" aria-hidden="true">
+                            <svg class="planet">
+                                <use href="#p-uranus" />
+                            </svg>
+                        </span>
+                        <span class="spot__n">02</span>
+                        <span class="spot__name" data-i18n="s2Title">SmartFlow</span>
+                        <span class="spot__body" data-i18n="pl2">Urano</span>
+                    </a>
+                </li>
+                <li class="spot" style="--x:72%; --y:56%; --size:70px">
+                    <a href="#sitio-3">
+                        <span class="spot__mark" aria-hidden="true">
+                            <svg class="planet">
+                                <use href="#p-jupiter" />
+                            </svg>
+                        </span>
+                        <span class="spot__n">03</span>
+                        <span class="spot__name" data-i18n="s3Title">FoodMind</span>
+                        <span class="spot__body" data-i18n="pl3">Júpiter</span>
+                    </a>
+                </li>
+                <li class="spot" style="--x:78%; --y:77%; --size:64px">
+                    <a href="#sitio-4">
+                        <span class="spot__mark" aria-hidden="true">
+                            <svg class="planet">
+                                <use href="#p-saturn" />
+                            </svg>
+                        </span>
+                        <span class="spot__n">04</span>
+                        <span class="spot__name" data-i18n="s4Title">DevFeira</span>
+                        <span class="spot__body" data-i18n="pl4">Saturno</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="sheet__margin">
                 <div class="scalebar" aria-hidden="true">
                 </div>
                 <p class="credentials"><span data-i18n="credA">Técnico em Programação - Senac RS</span><span class="sep"
-                        aria-hidden="true">·</span><span data-i18n="credB">Estagiário - BEG Support</span><span
+                        aria-hidden="true">·</span><span data-i18n="credB">Estagiário - Beg Support</span><span
                         class="sep" aria-hidden="true">·</span><span data-i18n="credC">Portão, Rio Grande do Sul</span>
                 </p>
             </div>
@@ -93,13 +281,13 @@
             <div class="perfil__grid">
                 <figure class="plate plate--portrait">
                     <img src="assets/eu.jpg" alt="Bernardo Varisco Fleck, retrato" loading="lazy" decoding="async">
-                    <figcaption><span data-i18n="portraitCap"> Desenvolvedor de Sistemas</span></figcaption>
+                    <figcaption><span data-i18n="portraitCap">Desenvolvedor de Sistemas</span></figcaption>
                 </figure>
                 <div class="perfil__notes">
                     <p class="notes" data-i18n="perfilP1">Sou Desenvolvedor de Sistemas em formação e atualmente atuo
                         como estagiário na BEG Support, onde trabalho com Oracle APEX, PL/SQL e JavaScript no
                         desenvolvimento de soluções web para clientes de diferentes segmentos.</p>
-                    <p class="notes" data-i18n="perfilP2">Conclui o Técnico em Programação pelo Senac RS, com foco em
+                    <p class="notes" data-i18n="perfilP2">Concluí o Técnico em Programação pelo Senac RS, com foco em
                         desenvolvimento Full-Stack (HTML, CSS e JavaScript) e modelagem de bancos de dados relacionais.
                         Ao longo da minha formação, desenvolvi projetos práticos, além de participar de
                         hackathons, experiências que fortaleceram minha capacidade de trabalhar em equipe, resolver
@@ -110,7 +298,7 @@
                             <dd>Senac RS</dd>
                         </div>
                         <div>
-                            <dt data-i18n="recA">Ensino Superior</dt>
+                            <dt data-i18n="recA2">Ensino Superior</dt>
                             <dd>Unisinos</dd>
                         </div>
                         <div>
@@ -155,6 +343,9 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">01</span>
+                        <span class="site__body-mark"><svg class="planet planet--sm" aria-hidden="true">
+                                <use href="#p-venus" />
+                            </svg><span data-i18n="pl1">Vênus</span></span>
                     </div>
                     <div class="site__body">
                         <h3 id="s1" data-i18n="s1Title">Hackaton + Saúde</h3>
@@ -165,7 +356,7 @@
                             plataforma permite registro, busca, atualização e remoção de instrumentos, oferecendo mais
                             controle e segurança durante os procedimentos médicos.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML - CSS</li>
+                            <li>HTML · CSS</li>
                             <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
@@ -188,6 +379,9 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">02</span>
+                        <span class="site__body-mark"><svg class="planet planet--sm" aria-hidden="true">
+                                <use href="#p-uranus" />
+                            </svg><span data-i18n="pl2">Urano</span></span>
                     </div>
                     <div class="site__body">
                         <h3 id="s2" data-i18n="s2Title">SmartFlow</h3>
@@ -199,7 +393,7 @@
                             acesso segmentado e seguro, visualizando apenas os dados e funcionalidades compatíveis com
                             seu perfil e nível de permissão dentro da plataforma.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML - CSS</li>
+                            <li>HTML · CSS</li>
                             <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
@@ -222,6 +416,9 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">03</span>
+                        <span class="site__body-mark"><svg class="planet planet--sm" aria-hidden="true">
+                                <use href="#p-jupiter" />
+                            </svg><span data-i18n="pl3">Júpiter</span></span>
                     </div>
                     <div class="site__body">
                         <h3 id="s3" data-i18n="s3Title">FoodMind</h3>
@@ -232,7 +429,7 @@
                             gestão de lembretes e eventos pessoais, além de integrar funcionalidades de comunicação e
                             personalização de perfil.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML - CSS</li>
+                            <li>HTML · CSS</li>
                             <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
@@ -256,6 +453,9 @@
                 <div class="site__inner">
                     <div class="site__meta">
                         <span class="site__n">04</span>
+                        <span class="site__body-mark"><svg class="planet planet--sm" aria-hidden="true">
+                                <use href="#p-saturn" />
+                            </svg><span data-i18n="pl4">Saturno</span></span>
                     </div>
                     <div class="site__body">
                         <h3 id="s4" data-i18n="s4Title">DevFeira</h3>
@@ -267,7 +467,7 @@
                             designers e projetos. Nelas, os usuários podem postar dúvidas ou dicas acompanhadas de
                             imagens.</p>
                         <ul class="legend" aria-label="Stack">
-                            <li>HTML - CSS</li>
+                            <li>HTML · CSS</li>
                             <li>Node.js</li>
                             <li>JavaScript</li>
                             <li>MySQL</li>
@@ -321,7 +521,7 @@
     <footer class="margem">
         <div class="margem__inner">
             <div class="margem__links">
-                <p class="tag" data-i18n="linksTag">Contato</p>
+                <p class="tag" data-i18n="linksTag">Contatos</p>
                 <ul>
                     <li><a href="https://github.com/bernardoeeee" target="_blank" rel="noopener">GitHub <span
                                 aria-hidden="true">↗</span></a></li>
@@ -332,8 +532,8 @@
                 </ul>
             </div>
             <div class="margem__colophon">
-                <p class="tag" data-i18n="colophonTag">Créditos da carta</p>
-                <p data-i18n="colophon">Carta desenhada e escrita por Bernardo Varisco Fleck.</p>
+                <p class="tag" data-i18n="colophonTag">Créditos</p>
+                <p data-i18n="colophon">Escrito por Bernardo Varisco Fleck.</p>
             </div>
         </div>
     </footer>

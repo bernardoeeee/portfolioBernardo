@@ -21,7 +21,6 @@
     --hydro: #091428;
 
     /* plotted lines */
-    --contour: #22406E;
     --water: #4EA8DE;
     --rubric: #4EA8DE;
     --flare: #7FC4F0;
@@ -117,6 +116,14 @@ a {
     transform: translateY(0);
 }
 
+/* the planet sprite: defined once, used wherever a system is named */
+.sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
 /* ---------------- shared lettering ---------------- */
 
 h1,
@@ -196,16 +203,6 @@ h3 {
     justify-content: flex-end;
 }
 
-.collar__value {
-    font-family: var(--narrow);
-    font-weight: 700;
-    font-size: .82rem;
-    letter-spacing: .12em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .edition {
     display: flex;
     border: 1px solid var(--ink-30);
@@ -246,7 +243,7 @@ h3 {
 }
 
 .sheet__relief,
-.sheet__contours {
+.sheet__plane {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -254,20 +251,28 @@ h3 {
     z-index: -2;
 }
 
-.sheet__contours {
+.sheet__plane {
     z-index: -1;
 }
 
+/* two clearings, not one: the lettering sits in the left one, the plotted
+   systems in the right one. the sky is only ever fully itself in between. */
 .sheet__vignette {
     position: absolute;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: linear-gradient(100deg,
+    background:
+        radial-gradient(105% 82% at 79% 50%,
+            rgba(6, 12, 24, .72) 0%,
+            rgba(6, 12, 24, .44) 38%,
+            rgba(6, 12, 24, .14) 66%,
+            rgba(6, 12, 24, 0) 88%),
+        linear-gradient(100deg,
             var(--sheet) 0%,
-            rgba(6, 12, 24, .94) 20%,
-            rgba(6, 12, 24, .64) 36%,
-            rgba(6, 12, 24, 0) 58%);
+            rgba(6, 12, 24, .92) 20%,
+            rgba(6, 12, 24, .58) 38%,
+            rgba(6, 12, 24, 0) 62%);
 }
 
 .sheet__block {
@@ -364,14 +369,14 @@ h3 {
 
 .spot a {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto minmax(0, 1fr);
     grid-template-areas:
         "mark n"
         "mark name"
-        "mark h";
+        "mark body";
     grid-template-rows: auto auto auto;
     align-items: center;
-    column-gap: .55rem;
+    column-gap: .7rem;
     padding: .3rem .45rem .3rem .3rem;
     border: 1px solid transparent;
     transition: border-color .14s linear, background .14s linear;
@@ -379,33 +384,19 @@ h3 {
 
 .spot__mark {
     grid-area: mark;
-    width: 15px;
-    height: 15px;
-    position: relative;
+    width: var(--size, 44px);
+    height: var(--size, 44px);
+    display: block;
 }
 
-/* a four-point star: two crossed rules, the chart's own glyph */
-.spot__mark::before,
-.spot__mark::after {
-    content: "";
-    position: absolute;
-    background: var(--star);
-}
-
-.spot__mark::before {
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    margin-left: -.5px;
-}
-
-.spot__mark::after {
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    margin-top: -.5px;
+/* the body itself, lit from the upper left like everything else on the sheet */
+.planet {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+    transition: transform .3s cubic-bezier(.2, .7, .2, 1),
+        filter .3s cubic-bezier(.2, .7, .2, 1);
 }
 
 .spot__n {
@@ -426,24 +417,34 @@ h3 {
     white-space: nowrap;
 }
 
-.spot__h {
-    grid-area: h;
+/* the body's own name, in the register the chart uses for designations */
+.spot__body {
+    grid-area: body;
     font-family: var(--narrow);
     font-weight: 600;
-    font-size: .7rem;
-    letter-spacing: .12em;
+    font-size: .68rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
     color: var(--ink-60);
+    margin-top: .1rem;
 }
 
 .spot a:hover,
 .spot a:focus-visible {
-    background: var(--sheet);
-    border-color: var(--ink);
+    transform: scale(1.09);
+    transition: transform .6s;
 }
 
-.spot a:hover .spot__mark,
-.spot a:focus-visible .spot__mark {
-    transform: scale(1.6);
+/* the body turns toward you: it does not grow, it brightens */
+.spot a:hover .planet,
+.spot a:focus-visible .planet {
+    transform: scale(1.07);
+    filter: brightness(1.28);
+}
+
+.spot a:hover .spot__body,
+.spot a:focus-visible .spot__body {
+    color: var(--ink);
 }
 
 /* --- bottom margin of the sheet --- */
@@ -459,34 +460,6 @@ h3 {
     border-top: 1px solid var(--ink-30);
     padding: .8rem 0 1.1rem;
     margin-top: clamp(1.1rem, 3.5vh, 2.25rem);
-}
-
-.scalebar__bar {
-    display: flex;
-    width: 160px;
-    height: 9px;
-    border: 1px solid var(--ink-30);
-}
-
-.scalebar__bar i {
-    flex: 1;
-}
-
-.scalebar__bar i:nth-child(odd) {
-    background: var(--ink);
-}
-
-.scalebar__ticks {
-    display: flex;
-    justify-content: space-between;
-    width: 172px;
-    margin-left: -6px;
-    margin-top: .2rem;
-    font-family: var(--narrow);
-    font-weight: 600;
-    font-size: .64rem;
-    letter-spacing: .1em;
-    color: var(--ink-60);
 }
 
 .credentials {
@@ -550,41 +523,6 @@ h3 {
 
 .perfil .notes {
     max-width: 58ch;
-}
-
-.section {
-    margin-bottom: 1.6rem;
-}
-
-.profileline {
-    width: 100%;
-    height: 88px;
-    border-bottom: 1px solid var(--ink-30);
-}
-
-#profilePath {
-    fill: none;
-    stroke: var(--ink);
-    stroke-width: 1.35;
-    vector-effect: non-scaling-stroke;
-}
-
-#profileFill {
-    fill: rgba(78, 168, 222, .16);
-    stroke: none;
-}
-
-.section__caption {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-top: .4rem;
-    font-family: var(--narrow);
-    font-weight: 600;
-    font-size: .68rem;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-    color: var(--ink-60);
 }
 
 /* record table */
@@ -660,11 +598,6 @@ h3 {
     letter-spacing: .13em;
     text-transform: uppercase;
     color: var(--ink);
-}
-
-.plate__n {
-    color: var(--rubric);
-    flex: none;
 }
 
 /* ---------------- traverse (one unbroken line) ---------------- */
@@ -756,14 +689,23 @@ h3 {
     border-bottom: 1px solid var(--pale-40);
 }
 
-.site__ref {
+/* the same body that carries this system in the sky, at catalogue size */
+.site__body-mark {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
     font-family: var(--narrow);
     font-weight: 600;
     font-size: .7rem;
-    letter-spacing: .16em;
+    letter-spacing: .2em;
+    text-transform: uppercase;
     color: var(--pale-70);
-    writing-mode: vertical-rl;
-    white-space: nowrap;
+}
+
+.planet--sm {
+    width: 28px;
+    height: 28px;
+    flex: none;
 }
 
 .site__body h3 {
@@ -930,52 +872,6 @@ h3 {
     outline-color: var(--flare);
 }
 
-.station {
-    display: grid;
-    gap: 0;
-    margin-top: 2.25rem;
-    max-width: 30rem;
-    border-top: 1px solid var(--pale-40);
-}
-
-.station>div {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: .5rem 1rem;
-    padding: .6rem 0 .65rem;
-    border-bottom: 1px solid var(--pale-40);
-}
-
-.station dt {
-    font-family: var(--narrow);
-    font-weight: 600;
-    font-size: .7rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--pale-70);
-}
-
-.station dd {
-    font-family: var(--narrow);
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: .06em;
-}
-
-.station a {
-    border-bottom: 1px solid var(--pale-40);
-    padding-bottom: 1px;
-    transition: color .14s linear, border-color .14s linear;
-}
-
-.station a:hover,
-.station a:focus-visible {
-    color: var(--flare);
-    border-bottom-color: var(--flare);
-}
-
 .contato h2 {
     font-size: clamp(2.3rem, 7vw, 4.8rem);
     letter-spacing: -0.02em;
@@ -1084,61 +980,6 @@ h3 {
     margin-top: .45rem;
 }
 
-.margem__key li {
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    font-family: var(--narrow);
-    font-weight: 600;
-    font-size: .78rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-}
-
-.key {
-    flex: none;
-    width: 15px;
-    height: 15px;
-}
-
-.key--spot {
-    position: relative;
-}
-
-.key--spot::before,
-.key--spot::after {
-    content: "";
-    position: absolute;
-    background: var(--star);
-}
-
-.key--spot::before {
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    margin-left: -.5px;
-}
-
-.key--spot::after {
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    margin-top: -.5px;
-}
-
-.key--line {
-    height: 1px;
-    background: repeating-linear-gradient(to right, var(--water) 0 5px, transparent 5px 9px);
-}
-
-.key--plate {
-    border: 1px solid var(--ink-30);
-    color: var(--contour);
-    background-image: var(--hatch);
-}
-
 .margem__links a {
     font-family: var(--narrow);
     font-weight: 700;
@@ -1164,29 +1005,7 @@ h3 {
     max-width: 34ch;
 }
 
-.margem__year {
-    font-family: var(--narrow);
-    font-weight: 700;
-    letter-spacing: .28em;
-}
-
 /* ---------------- motion ---------------- */
-
-.contours-path {
-    fill: none;
-    stroke: var(--contour);
-    stroke-width: .85;
-    vector-effect: non-scaling-stroke;
-}
-
-.contours-path--index {
-    stroke-width: 1.6;
-}
-
-.contours-path--water {
-    stroke: var(--water);
-    stroke-width: 1.4;
-}
 
 .js-reveal {
     opacity: 0;
@@ -1254,7 +1073,7 @@ h3 {
                 rgba(6, 12, 24, 0) 100%);
     }
 
-    /* spot heights become a plotted index list under the title */
+    /* the bodies leave the sky for an index list under the title */
     .spots {
         position: static;
         inset: auto;
@@ -1277,13 +1096,22 @@ h3 {
     }
 
     .spot a {
-        grid-template-columns: auto auto minmax(0, 1fr) auto;
-        grid-template-rows: auto;
-        grid-template-areas: "mark n name h";
+        grid-template-columns: auto auto minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "mark n name"
+            "mark n body";
         align-items: center;
-        gap: .7rem;
-        padding: .7rem .1rem;
+        column-gap: .8rem;
+        row-gap: 0;
+        padding: .75rem .1rem;
         border: 0;
+    }
+
+    /* the bodies keep their relative sizes, at list scale */
+    .spot__mark {
+        width: calc(var(--size, 44px) * .62);
+        height: calc(var(--size, 44px) * .62);
     }
 
     .spot__name {
@@ -1291,26 +1119,10 @@ h3 {
         font-size: 1.05rem;
     }
 
-    .spot__h {
-        justify-self: end;
-    }
-
+    /* a planet on an inverted plate reads as a mistake, so the row tints instead */
     .spot a:hover,
     .spot a:focus-visible {
-        background: var(--ink);
-        color: var(--sheet);
-    }
-
-    .spot a:hover .spot__h,
-    .spot a:focus-visible .spot__h {
-        color: var(--sheet);
-    }
-
-    .spot a:hover .spot__mark::before,
-    .spot a:hover .spot__mark::after,
-    .spot a:focus-visible .spot__mark::before,
-    .spot a:focus-visible .spot__mark::after {
-        background: var(--sheet);
+        background: rgba(203, 221, 242, .07);
     }
 
     .perfil__grid {
@@ -1343,10 +1155,6 @@ h3 {
         padding-bottom: 0;
     }
 
-    .site__ref {
-        writing-mode: horizontal-tb;
-    }
-
     .site__aside {
         grid-column: auto;
         grid-template-columns: minmax(0, 1fr);
@@ -1369,10 +1177,6 @@ h3 {
 
     .sheet__margin {
         gap: 1.25rem;
-    }
-
-    .scalebar__ticks {
-        margin-top: .35rem;
     }
 
     .credentials {
@@ -1400,6 +1204,7 @@ h3 {
 }
 
 @media print {
+
     .collar,
     .skip,
     .traverse {
@@ -1414,25 +1219,14 @@ h3 {
 
 /* ---------------- celestial chart additions ---------------- */
 
-.graticule {
+/* the ecliptic: one curve, fitted through the four bodies and run out to
+   both edges of the sheet. the only structure the sky carries. */
+.ecliptic {
     fill: none;
-    stroke: rgba(34, 64, 110, .55);
-    stroke-width: 1;
-    vector-effect: non-scaling-stroke;
-}
-
-.contours-path {
-    stroke: rgba(34, 64, 110, .85);
-}
-
-.contours-path--index {
-    stroke: rgba(45, 82, 138, .95);
-}
-
-.contours-path--water {
     stroke: var(--water);
-    stroke-width: 1.2;
-    stroke-dasharray: none;
+    stroke-width: 1.1;
+    stroke-opacity: .5;
+    vector-effect: non-scaling-stroke;
 }
 
 
@@ -1471,10 +1265,6 @@ h3 {
     .site__n {
         border-bottom: 0;
         padding-bottom: 0;
-    }
-
-    .site__ref {
-        writing-mode: horizontal-tb;
     }
 
     .site__body h3 {
